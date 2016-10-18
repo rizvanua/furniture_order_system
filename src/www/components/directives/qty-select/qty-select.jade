@@ -1,0 +1,9 @@
+label
+	| QTY
+.input-group
+	input.form-control(type='text', maxlength='3', data-ng-model='quantity', onkeypress='return isNumber(event)', style='padding-left:5px;')
+	span.input-group-btn
+		button.btn.btn-default.fb-btn-qty(type='button', ng-click='quantity=quantity-1')
+			span.glyphicon.glyphicon-minus(style='margin-bottom:5px;margin-left:0px;')
+		button.btn.btn-default.fb-btn-qty(type='button', ng-click='quantity=quantity+1')
+			span.glyphicon.glyphicon-plus(style='margin-bottom:5px;margin-left:5px;')

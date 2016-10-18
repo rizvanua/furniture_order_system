@@ -1,0 +1,23 @@
+div(style='width:100%;')
+	div(style="margin-bottom:30px;margin-top:20px;padding:0px 100px 0px 20px;")
+		input.form-control(type='text', placeholder='Search', style='border: none !important; height:34px; width:100%;', ng-model='searchInfo.fbSearchText')
+	.panel.panel-default.fb-card-body(style='margin-left: 0px; margin-right: 0px; margin-top: 30px; box-shadow: none;')
+		.col-lg-12.col-xs-12.col-xs-12(style='padding:20px 10px 20px 10px; margin:20px 0px 20px 0px;background-color:#EEEEEE;')
+			.col-lg-2.col-xs-2.col-xs-2(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;')
+				p(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;') Name
+			.col-lg-2.col-xs-2.col-xs-2(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;')
+				p(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;') Email
+			.col-lg-6.col-xs-6.col-xs-6(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;')
+			.col-lg-2.col-xs-2.col-xs-2(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;')
+				p(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;') Action
+	.panel.panel-default.fb-card-body(ng-repeat='user in users | filter : searchInfo.fbSearchText', 
+	style='margin-left: 0px; margin-right: 0px; margin-top: 30px; box-shadow: none;')
+		.row.vertical-align(style='padding:20px 10px 20px 10px; margin:20px 0px 20px 0px;background-color:#EEEEEE;')
+			.col-lg-2.col-xs-2.col-xs-2(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;height:100%;')
+				div(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;') {{user.firstName}} {{user.lastName}}
+			.col-lg-2.col-xs-2.col-xs-2(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;height:100%;')
+				div(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;') {{user.Email}}
+			.col-lg-6.col-xs-6.col-xs-6(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;')
+			.col-lg-2.col-xs-1.col-xs-1(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;height:100%;')
+				button.blueBtn(style='font-size:12px;margin-right:20px;', ng-click="EditUser(user.UserID)") Edit
+				button.blueBtn(style='font-size:12px;', ng-click="ImpUser(user.UserID)") Impersonate

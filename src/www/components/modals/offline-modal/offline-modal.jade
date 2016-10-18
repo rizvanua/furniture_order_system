@@ -1,0 +1,53 @@
+#offlineModal.modal.fade.bs-example-modal-md(tabindex='-1', role='dialog', data-backdrop='static', aria-labelledby='offlineModalLabel', aria-hidden='true')
+	.modal-dialog.modal-md
+		.modal-content.offline-modal-body()
+			.modal-header
+				h4#offlineModalLabel.modal-title
+					| Offline Settings
+			.modal-body.offline-modal-body()
+				div
+					p
+						| Activating offline mode will enable the majority of Fasterbids functionality to work with little or no internet connection! 
+						| All your work will be saved locally and automatically synced to Fasterbids servers when a 
+						| stable internet connection becomes available. Offline mode also greatly improves speed for desktop users looking for the best possible
+						| quoting experience. 
+					p Unfortunately at the moment offline mode is only available for browsers that support the latest web technologies, the compatibility test below will let
+						| you know if your setup is supported. Finally, to make all Fasterbids catalogs available offline there will be a one time loading process that may take up to 1 hour.
+						| Please be patient while this completes, it's worth it, we promise!
+					br
+					table.offline-modal-table
+						tr
+							td Browser:
+							td Chrome or Safari
+							td
+								span.glyphicon.glyphicon-ok(ng-if="browserGood")
+								span.glyphicon.glyphicon-remove(ng-if="!browserGood")
+						tr
+							td Free Storage:
+							td At Least 4GB
+							td
+								span.glyphicon.glyphicon-ok(ng-if="memGood")
+								span.glyphicon.glyphicon-remove(ng-if="!memGood")
+						tr
+							td RAM:
+							td At Least 400MB
+							td
+								span.glyphicon.glyphicon-ok(ng-if="ramGood")
+								span.glyphicon.glyphicon-remove(ng-if="!ramGood")
+					br
+					table(style="margin-right:auto;margin-left:auto;vertical-align:middle;")
+						tr
+							td
+								p(style="color:green;margin-bottom:0px;", ng-if="supportsOffline && !offlineState") Your system supports offline mode! Check to enable:
+								p(style="color:green;margin-bottom:0px;", ng-if="supportsOffline && offlineState") Your system is in offline mode! Check to disable:
+								p(style="color:red;margin-bottom:0px;", ng-if="!supportsOffline") Your system dose not support offline mode!
+							td(style="padding-left:20px;")
+								.checkbox(style="")
+									label
+										input(type='checkbox', data-ng-click='set(offlineState)', ng-model='offlineState', style="color:green;", ng-disabled="!supportsOffline")
+					div(ng-if="offlineState", style="width:100%;text-align:center;")
+						button.btn.btn-raised.btn-danger(type='button', ng-click="ClearDB();")
+							| RESET DATABASE
+			.modal-footer
+				button.btn.btn-default(type='button', ng-click="close()")
+					| Close

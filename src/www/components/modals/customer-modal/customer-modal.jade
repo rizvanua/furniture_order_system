@@ -1,0 +1,29 @@
+#customerModal.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-hidden='true')
+	.modal-dialog.modal-sm
+		.modal-content
+			.modal-header
+				h4.modal-title New Customer
+			.modal-body(style='text-align: center')
+				h4 Enter Customer Information
+				form(name='customerform')
+					.form-group(show-errors='')
+						input.form-control.addcustomer(placeholder='Name', maxlength='100', data-ng-model='customer.name', name='name', required='')
+					.form-group(show-errors='')
+						input.form-control.addcustomer(type='email', placeholder='Email', maxlength='100', data-ng-model='customer.email', name='email')
+					.form-group
+						input.form-control.addcustomer(placeholder='Phone', maxlength='20', data-ng-model='customer.phone', name='phone')
+					.form-group
+						input.form-control.addcustomer(placeholder='Street', maxlength='200', data-ng-model='customer.street', name='street')
+					.form-group
+						input.form-control.addcustomer(placeholder='City', maxlength='100', data-ng-model='customer.city', name='city')
+					.form-group
+						input.form-control.addcustomer(placeholder='State', maxlength='100', data-ng-model='customer.state', name='state')
+					.form-group
+						input.form-control.addcustomer(placeholder='Zip', maxlength='10', data-ng-model='customer.zip', name='zip')
+					.form-group
+						input.form-control.addcustomer(placeholder='Customer ID', maxlength='10', data-ng-model='customer.identifier', name='identifier')
+			.modal-footer
+				button.btn.btn-default(type='button', data-dismiss='modal')
+					| Close
+				button.btn.btn-primary.savecustomer(type='button', data-ng-click='SaveCustomer(customer)')
+					| Okay

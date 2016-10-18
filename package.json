@@ -1,0 +1,52 @@
+{
+  "name": "Fasterbids",
+  "main": "src/www/index.html",
+  "version": "1.0.0",
+  "description": "Fasterbids App",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JakeC77/FasterbidsPhonegap.git"
+  },
+  "keywords": [
+    "Cordova",
+    "Gulp"
+  ],
+  "author": "Fasterbids",
+  "license": "None",
+  "devDependencies": {
+    "cordova-lib": "^6.1.0",
+    "del": "^2.2.0",
+    "deploy-azure-cdn": "^1.1.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-concat-css": "^2.2.0",
+    "gulp-deploy-azure-cdn": "^2.0.0",
+    "gulp-gzip": "^1.2.0",
+    "gulp-include-source": "0.0.5",
+    "gulp-inject": "^4.0.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-manifest": "^0.1.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-upload-azure": "^1.0.7",
+    "gulp-util": "^3.0.7",
+    "jshint": "^2.9.1",
+    "node-static": "^0.7.7",
+    "node-windows": "^0.1.11",
+    "q": "^2.0.3",
+    "stream-series": "^0.1.1",
+    "ngclipboard": "^1.1.1"
+  },
+  "dependencies": {
+    "cordova-android": "^5.1.1",
+    "cordova-browser": "^4.1.0",
+    "cordova-ios": "^4.1.0",
+    "ngclipboard": "^1.1.1"
+  }
+}

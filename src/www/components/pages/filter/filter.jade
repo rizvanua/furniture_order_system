@@ -1,0 +1,254 @@
+div(style='position: fixed; width: 100%; z-index: 99;min-width:1080px; top:0px; left:0px;')
+	nav.navbar.header-color(style='margin-bottom: 0px;z-index:100;position:relative;')
+		div(style='position:absolute;left:0px;right:0px;width:1024px;margin-left:auto;margin-right: auto;top:10px;padding-right:86px;')
+			span#fb-search-icon-button.glyphicon.glyphicon-search(aria-hidden='true', style='display:inline-block;float:right;margin-top:3px;font-size:24px;z-index:99;position:relative;cursor:pointer;', ng-click='showingSearch = !showingSearch')
+			img(onerror='this.style.display = "none"', fb-img-src='{{CurrUser.companyImagePath}}', alt='', style='display:inline-block;height:42px;float:right;margin-top:-5px;z-index:99;margin-right:20px;')
+		.container-fluid(style='position:relative;z-index:98;')
+			i.mdi-navigation-arrow-back.pull-left.header-text-color(ng-click='BackClick()', style='margin:10px;cursor:pointer;')
+			ul.breadcrumb.pull-left.header-text-color(style='background-color:transparent; width:80%;margin:0px;padding:5px;z-index:98;position:relative;')
+				li
+					a(ng-click="homeClick()")
+						i.mdi-action-home.header-text-color(style='vertical-align:middle;')
+				li
+					a(href='javascript:void(0)')
+						.btn-group(style='margin:0px')
+							a.btn.btn-default.dropdown-toggle.header-text-color(style='margin:0px;padding-left:4px;padding-right:4px;')
+								| {{thisItem.SelectedCustomer.name}}
+				li
+					a(href='javascript:void(0)')
+						.btn-group(style='margin:0px')
+							a.btn.btn-default.dropdown-toggle.header-text-color(data-target='#', style='margin:0px;padding-left:4px;padding-right:4px;', data-toggle='dropdown')
+								span(ng-if='thisItem.SelectedMasterQuote.ProjectName !== null')
+									| {{thisItem.SelectedMasterQuote.JobName + " " + thisItem.SelectedMasterQuote.ProjectName}}
+								span(ng-if='thisItem.SelectedMasterQuote.ProjectName === null') {{thisItem.SelectedMasterQuote.JobName}}
+								span.caret
+							ul.dropdown-menu.header-text-color
+								li(ng-class="{'active-quote': thisItem.SelectedMasterQuote == masterQuote}", ng-repeat="masterQuote in filtered = (thisItem.CustomerMasterQuotes | orderBy:'JobName' )")
+									a(ng-click='changeMasterQuote(masterQuote)')
+										span(ng-if='masterQuote.ProjectName !== null') {{masterQuote.JobName + " " + masterQuote.ProjectName}}
+										span(ng-if='masterQuote.ProjectName === null') {{masterQuote.JobName}}
+						span(ng-if='masterQuote.ProjectName !== null') {{masterQuote.JobName + " " + masterQuote.ProjectName}}
+						span(ng-if='masterQuote.ProjectName === null') {{masterQuote.JobName}}
+				li
+					a(href='javascript:void(0)')
+						.btn-group(style='margin:0px')
+							a.btn.btn-default.dropdown-toggle.header-text-color(data-target='#', style='margin:0px;padding-left:4px;padding-right:4px;', data-toggle='dropdown')
+								| {{thisItem.ProductTypeItem.ProductType}}
+								span.caret
+							ul.dropdown-menu.header-text-color
+								li(ng-repeat='item in thisItem.ProductTypes')
+									a(ng-click='getStyles2(item)', href='javascript:void(0)') {{item.ProductType}}
+				li
+					a(href='javascript:void(0)')
+						.btn-group(style='margin:0px')
+							a.btn.btn-default.dropdown-toggle.header-text-color(data-target='#', style='margin:0px;padding-left:4px;padding-right:4px;', data-toggle='dropdown')
+								| {{selectedManufacturer.name}}
+								span.caret
+							ul.dropdown-menu.header-text-color
+								li(ng-repeat='item in Manufacturers track by $index')
+									a(ng-click='ChangeManufacturer(item)', href='javascript:void(0)') {{item.name}}
+				li(ng-if='showResults == true')
+					a(href='javascript:void(0)')
+						.btn-group(style='margin:0px')
+							a.btn.btn-default.dropdown-toggle.header-text-color(data-target='#', style='margin:0px;padding-left:4px;padding-right:4px;', data-toggle='dropdown')
+								| {{getStyleName()}}
+								span.caret
+							ul.dropdown-menu.header-text-color
+								li(ng-repeat='style in StylesList')
+									a.header-text-color(ng-click='StyleClick(style)', href='javascript:void(0)') {{style.Style}}
+								li
+									a.header-text-color(ng-click='StyleClick()') All
+			// <i class="mdi-action-search pull-right" ></i>
+		// /.container-fluid
+	div(style='position:absolute;left:0px;right:0px;margin-left:auto;margin-right:auto;top:56px;z-index:200;width:1024px;padding-right:46px;')
+		#fb-filter-search-box(style='background:white;padding:4px 20px 4px 20px;width:520px;border-bottom-left-radius: 0.2em;border-bottom-right-radius: 0.2em;float:right;box-shadow: -4px 4px 4px -2px rgba(0, 0, 0, 0.24);\
+		-moz-box-shadow: -4px 4px 4px -2px rgba(0, 0, 0, 0.24);\
+		-webkit-box-shadow: -4px 4px 4px -2px rgba(0, 0, 0, 0.24);', ng-if='showingSearch', click-outside='closeSearch()', outside-if-not='fb-search-icon-button')
+			.row
+				.col-lg-5.col-xs-5(style='margin:0px 0px 0px 0px;padding:0px 6px 0px 0px;')
+					input.form-control(type='text', placeholder='Search', style='border: none !important;height:34px;width:100%;', ng-model='searchInfo.fbSearchText')
+				div(ng-class="{'col-lg-5 col-xs-5' : SearchExtraFilter.length === 0, 'col-lg-3 col-xs-3' : SearchExtraFilter.length !== 0}", style='margin:0px 0px 0px 0px;padding:0px 6px 0px 0px;')
+					select.form-control(ng-options='item.name for item in SearchManufacturers track by item.ManufacturerID', ng-model='searchInfo.searchSelectedManufacturer', style='border:1px solid black;color:black;height:34px;')
+				.col-lg-2.col-xs-2(ng-if='SearchExtraFilter.length !== 0', style='margin:0px 0px 0px 0px;padding:0px 6px 0px 0px;')
+					select.form-control(ng-options='item.Style2 for item in SearchExtraFilter track by item.Styles2ID', ng-model='searchInfo.searchSelectedExtraFilter', style='border:1px solid black;color:black;height:34px;')
+				.col-lg-2.col-xs-2(style='margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;')
+					button.btn.btn-default(type='button', style='color:black;height:34px;width:100%;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;', ng-click='SBSearch(fbSearchText, searchInfo.searchSelectedManufacturer, searchInfo.searchSelectedExtraFilter)') Go!
+div(style='max-width: 1280px;min-width:1080px;margin-top: 70px;height:95%')
+	.fb-sidebar-filter(style='height: 100%; float:left;position:relative')
+		div(style='width:100%; text-align:center;')
+			.btn-group.fb-sidebar-filter-dd(ng-if='!showResults')
+				a.btn.btn-default.dropdown-toggle(style='color:Black;width:100%', data-target='#', data-toggle='dropdown')
+					| {{selectedManufacturer.name}}
+					span.caret
+				ul.dropdown-menu
+					li(ng-repeat='item in Manufacturers track by $index')
+						a(ng-click='ChangeManufacturer(item)', href='javascript:void(0)')
+							| {{item.name}}
+		img(fb-img-src="{{ FBConfig.UPaths.DistImagePath + selectedManufacturerPhoto }}", style='width:200px; margin-top:20px; margin-left:auto; margin-right:auto; display:block; text-align:center;')
+		span(ng-if='showResults == true', style='float:left; position:relative; font-size:11px; color:#262626; left:0px; top:15px;') NARROW YOUR CHOICES
+		a(ng-click='clearFilters()', ng-if='showResults == true', style='float:right; position:relative; font-size:11px; color:#00a7fc; right:0px; top:15px;border:none;text-decoration:none; cursor:pointer;')
+			span CLEAR ALL
+		#product-type(ng-if='showResults == true', style='margin-top:50px;')
+			.product-new-class(data-ng-repeat='x in names')
+				.margin-bottom-5(data-ng-if="x.treeName != 'manufacturer' && x.values.length > 1", style='color:#000000;')
+					h4(style='margin-bottom:0px;border-bottom:1px solid #424242;font-size:14px;text-transform:uppercase;')
+						| {{x.treeName}}
+					//
+						<select class="form-control" data-ng-model="selectedItem[x.treeName]" data-ng-attr-class="{{ x.treeName }}" data-ng-options="filter as filter for filter in x.values"
+						data-ng-change="FilterChange(x.treeName, selectedItem)">
+						<option value="">Select</option>
+						</select>
+					table.col-lg-12.col-xs-12
+						tr(ng-repeat='filter in x.values|limitTo:getFilterLimit(x.treeName)', ng-if="filter != ''")
+							td
+								.checkbox
+									label
+										input(type='checkbox', data-ng-click='FilterChange(x.treeName, filter)', id='rad-{{filter}}', name='{{x.treeName}}', ng-checked='filters[x.treeName] == filter')
+										span(style='font-size:13px;color:#262626;margin-left:5px;') {{filter}}
+					a.pull-right.col-xs-12.col-lg-12.col-xs-12(ng-click='toggleShowAll(x.treeName)', style='text-align:right;color:#00a7fc;font-size:14px;')
+						| {{showFilters[x.treeName] == true ? 'SHOW LESS' : 'SHOW MORE'}}
+		.row.col-lg-12.col-xs-12.col-md-12.fb-door-toggle-c(ng-if='productType.ProductTypeID == 2', style='bottom:30px;position:absolute')
+			button.fb-btn-toggle(ng-click='toggleOptimizer(false)', style='width: 50%; margin: 0px; float: left', data-ng-class="{'active': optimizeMode != false}")
+				| BROWSE
+			button.fb-btn-toggle(ng-click='getOptimizableOrders()', style='width: 50%; margin: 0px; float: right', data-ng-class="{'active': optimizeMode != true}")
+				| OPTIMIZE
+	.fb-filter-page-body(ng-if='!optimizeMode', style='height: 100%; overflow:auto; padding-top:40px;')
+		.col-lg-12.col-xs-12(ng-if='!showResults', ng-repeat='style2 in metaTree.styles2[thisItem.ProductTypeItem.ProductTypeID]')
+			div(style='color:#424242;font-size:16px;text-transform:uppercase; margin-top:10px;margin-bottom:20px;font-weight:bold;')
+				| {{style2.Style2}} 
+				a.fb-btn-classic(style='padding:5px;cursor:pointer', ng-click='StyleClick(null,style2)') Show all
+			div(ng-class="{'inactiveStyle': styleNotAvailable(style)}", ng-repeat='style in metaTree.styles[style2.Styles2ID]')
+				.fb-product-img(data-ng-click='StyleClick(style)')
+					a(href='javascript:void(0)')
+						img(fb-img-src='{{ FBConfig.UPaths.StyleImagesPath + style.PhotoFileName }}', style='display: block', alt='image')
+		#doorPanel.col-md-12.no-padding(ng-if='showResults == true')
+			div(data-ng-animate="'animate'", data-ng-repeat='branch in parentFiltered = (tree  | filter: searchText | filter: filterHead | filter: SelectedStyleName)')
+				div(style='clear: both; margin: 10px;')
+					.col-md-12.col-lg-12.col-xs-12(style='color:#424242;font-size:20px;text-transform:uppercase; margin-top:10px;margin-bottom:0px;font-weight:bold;')
+						| {{branch.collection}}
+						button.fb-btn-classic(ng-disabled='currentPages[$index] == 0', ng-click='pageDown($index)', style="margin-left:20px;")
+							i.mdi-navigation-chevron-left
+						button.fb-btn-classic(ng-disabled='getStartIndex($index) >= branch.leaves.length/pageSize - 1', ng-click='pageUp($index)', style="margin-left:5px;")
+							i.mdi-navigation-chevron-right
+						img.pull-right(style='max-width:100px;', fb-img-src="{{FBConfig.UPaths.ManufacturerImagePath +  branch.leaves[0].manufacturer + '.png'}}")
+					hr.col-md-12.col-lg-12.col-xs-12(style='margin-top:10px !important;')
+					.doorThumb(data-ng-animate="'animate'", data-ng-repeat="leaf in filtered = (branch.leaves  | filter: searchText | filter: filters | filter: {style : SelectedStyleName} | filter:  ((showingSearch) ? searchInfo.fbSearchText : ''))| startFrom:(getStartIndex($index) * pageSize) | limitTo: pageSize")
+						.no-padding.filter-card(style='float:left;width:20%')
+							.product-list-img(data-bind='click:$root.ProductClick')
+								a(data-ng-click='showOrder(leaf);')
+									//
+										.filterThumb(ng-show="productType.ProductType != 'Doors'", style='height: 200px;', data-ng-style="{'background-image': 'url(' + 'http://fbpublicstorage.blob.core.windows.net/uploadfiles/products/' + leaf.photoName + ')'}")
+									div(style="height:200px;", ng-show="productType.ProductType != 'Doors'")
+										img(fb-img-src="{{FBConfig.UPaths.ProductImagePath}}{{leaf.photoName}}", style="width: auto;height : auto;max-height: 100%;max-width: 100%;")
+									img(onerror="this.onerror = null; this.src = 'http://fbpublicstorage.blob.core.windows.net/uploadfiles/products/noimage.png';", ng-show="productType.ProductType == 'Doors'", style='height: 200px;', fb-img-src='{{FBConfig.UPaths.ProductImagePath + leaf.photoName}}', ng-class='getDoorShadow(leaf)')
+									br
+									div(style='height: 75px;text-align:left;margin-left:0px;margin-top:10px;text-align:center;margin-bottom:10px;')
+										| {{leaf.name}}
+										h6(style='margin:0px;opacity:.8')
+											span(ng-if="leaf.caming && leaf.caming.length > 0 && leaf.caming[0] != ''")
+												| {{leaf.caming[0]}}
+												br
+											span(ng-if="leaf.glass && leaf.glass.length > 0 && leaf.glass[0] != ''")
+												| {{leaf.glass[0]}}
+												br
+											span(ng-if="leaf.species && leaf.species.length > 0 && leaf.species[0] != ''") {{leaf.species[0]}}
+											span(ng-if="leaf.material && leaf.material.length > 0 && leaf.material[0] != ''") {{leaf.material[0]}}
+											span(ng-if="leaf.surface && leaf.surface.length > 0 && leaf.surface[0] != ''") {{leaf.surface[0]}}
+											span(ng-if="leaf.sticking && leaf.sticking.length > 0 && leaf.sticking[0] != ''") {{leaf.sticking[0]}}
+					div(data-ng-show='!filtered.length')
+						| No matching doors found
+					div(data-ng-hide='1==1')
+						| {{total(filtered.length,$last, branch)}}
+	.fb-filter-page-body(ng-if='optimizeMode', style='height: 100%;overflow:auto;padding-top:40px')
+		.col-xs-12(style='height:90%')
+			.col-xs-6(style='background-image:url(http://fbpublicstorage.blob.core.windows.net/uploadfiles/OptimizerImages/door.png);height:90%;background-position-x:center;background-repeat:no-repeat;background-size:contain')
+				.optimizer-btn(ng-if='!Header', ng-click="searchMolding('Header')", style='top:20px;left:40%')
+					span.glyphicon.glyphicon-plus.col-xs-12(style='margin-top:20px;margin-bottom:10px')
+					|                     ADD HEADER
+				.optimizer-btn(ng-if='Header', ng-click="searchMolding('Header')", style='top:20px;left:40%')
+					.optimizer-molding-img(style='background-image:url(http://fbpublicstorage.blob.core.windows.net/uploadfiles/products/{{Header.photoName}})')
+					|                     {{Header.name}}
+				.optimizer-btn(ng-if='!Casing', ng-click="searchMolding('Casing')", style='top:40%;left:70%')
+					span.glyphicon.glyphicon-plus.col-xs-12(style='margin-top:20px;margin-bottom:10px')
+					|                     ADD CASING
+				.optimizer-btn(ng-if='Casing', ng-click="searchMolding('Casing')", style='top:40%;left:70%;')
+					.optimizer-molding-img(style='background-image:url(http://fbpublicstorage.blob.core.windows.net/uploadfiles/products/{{Casing.photoName}})')
+					|                     {{Casing.name}}
+				.optimizer-btn(ng-click="searchMolding('Plinth')", style='bottom:4%;')
+					span.glyphicon.glyphicon-plus.col-xs-12(style='margin-top:20px;margin-bottom:10px')
+					|                     ADD PLINTH
+			.col-xs-6(style='background-image:url(http://fbpublicstorage.blob.core.windows.net/uploadfiles/OptimizerImages/window.png);height:60%;background-position-x:center;background-repeat:no-repeat;background-size:contain')
+				.optimizer-btn(ng-if='!Header', ng-click="searchMolding('Header')")
+					span.glyphicon.glyphicon-plus.col-xs-12(style='margin-top:20px;margin-bottom:10px')
+					|                     ADD HEADER
+				.optimizer-btn(ng-if='Header', ng-click="searchMolding('Header')")
+					.optimizer-molding-img(style='background-image:url(http://fbpublicstorage.blob.core.windows.net/uploadfiles/products/{{Header.photoName}})')
+					|                     {{Header.name}}
+				.optimizer-btn(ng-if='!Casing', ng-click="searchMolding('Casing')", style='top:40%;left:70%')
+					span.glyphicon.glyphicon-plus.col-xs-12(style='margin-top:20px;margin-bottom:10px')
+					|                     ADD CASING
+				.optimizer-btn(ng-if='Casing', ng-click="searchMolding('Casing')", style='top:40%;left:70%')
+					.optimizer-molding-img(style='background-image:url(http://fbpublicstorage.blob.core.windows.net/uploadfiles/products/{{Casing.photoName}})')
+					|                     {{Casing.name}}
+				.optimizer-btn(ng-if='!Liners', ng-click="searchMolding('Liners')", style='top:60%;left:10%')
+					span.glyphicon.glyphicon-plus.col-xs-12(style='margin-top:20px;margin-bottom:10px')
+					|                     ADD LINER
+				.optimizer-btn(ng-if='Liners', ng-click="searchMolding('Liners')", style='top:60%;left:10%')
+					.optimizer-molding-img(style='background-image:url(http://fbpublicstorage.blob.core.windows.net/uploadfiles/products/{{Liners.photoName}})')
+					|                     {{Liners.name}}
+				.optimizer-btn(ng-if='!Apron', ng-click="searchMolding('Apron')", style='top:95%;left:10%')
+					span.glyphicon.glyphicon-plus.col-xs-12(style='margin-top:20px;margin-bottom:10px')
+					|                     ADD APRON
+				.optimizer-btn(ng-if='Apron', ng-click="searchMolding('Apron')", style='top:95%;left:10%')
+					.optimizer-molding-img(style='background-image:url(http://fbpublicstorage.blob.core.windows.net/uploadfiles/products/{{Apron.photoName}})')
+					|                     {{Apron.name}}
+				.optimizer-btn(ng-if='!Sill', ng-click="searchMolding('Sill')", style='top:80%;left:70%')
+					span.glyphicon.glyphicon-plus.col-xs-12(style='margin-top:20px;margin-bottom:10px')
+					|                     ADD SILL
+				.optimizer-btn(ng-if='Sill', ng-click="searchMolding('Sill')", style='top:80%;left:70%')
+					.optimizer-molding-img(style='background-image:url(http://fbpublicstorage.blob.core.windows.net/uploadfiles/products/{{Sill.photoName}})')
+					|                     {{Sill.name}}
+		.row.col-xs-12
+			span.pull-left OPTIMIZER
+			span.pull-right REMOVE ALL
+		.panel.col-xs-12
+			.panel-body
+				.input-group.col-xs-3(style='padding-right:5px;float:left')
+					select.form-control(ng-options='item as item.name for item in windowOrders track by item.type', ng-model='optimizerData.currentWindowOrder', style='height:40px;border:1px solid #00A7FC;color:#00A7FC;')
+						option(value='', disabled='', selected='', hidden='') SELECT A WINDOW ORDER
+					span.input-group-btn
+						button.fb-btn-classic.fb-btn-order(data-ng-click='addWindowOrder()')
+							| ADD
+				.input-group.col-xs-3(style='padding-right:5px;float:left')
+					select.form-control(ng-options='o as o.name for o in doorOrders track by o.type', ng-model='optimizerData.currentDoorOrder', style='height:40px;border:1px solid #00A7FC;color:#00A7FC;')
+						option(value='', disabled='', selected='', hidden='') SELECT A DOOR ORDER
+					span.input-group-btn
+						button.fb-btn-classic.fb-btn-order(data-ng-click='addDoorOrder()')
+							| ADD
+				.col-xs-6
+					.col-xs-3(style='text-align:center;border:1px solid #00A7FC;color:#00A7FC;height:80px')
+						span.glyphicon.glyphicon-plus.col-xs-12(style='margin-top:10px;margin-bottom:10px')
+						|                         SELECT SKU
+					.col-xs-4(style='padding:0px')
+						.input-group(style='width:100%')
+							input.form-control(placeholder='CUSTOM LENGTH', style='height:40px;border:1px solid #00A7FC;color:#00A7FC;')
+						.input-group(style='width:100%')
+							input.form-control(placeholder='QUANTITY', style='height:40px;border:1px solid #00A7FC;color:#00A7FC;')
+							span.input-group-btn
+								button.fb-btn-classic.fb-btn-order(data-ng-click='AddToOrder(selected.id, selected.title)')
+									| ADD
+					button.col-xs-3.blueBtn.pull-right(style='height:80px', ng-click='Optimize()') OPTIMIZE ORDER
+				.input-group.col-xs-3(style='padding-right:5px;float:left')
+					.input-group.col-xs-12(ng-repeat='order in selectedWindowOrders')
+						span.form-control(style='height:40px;border:1px solid #00A7FC;color:#00A7FC;')
+							| {{order.name}}
+						span.input-group-btn
+							button.fb-btn-classic.fb-btn-order(data-ng-click='AddToOrder(selected.id, selected.title)')
+								| X
+				.input-group.col-xs-3(style='padding-right:5px;float:left')
+					.input-group.col-xs-12(ng-repeat='order in selectedDoorOrders')
+						span.form-control(style='height:40px;border:1px solid #00A7FC;color:#00A7FC;')
+							| {{order.name}}
+						span.input-group-btn
+							button.fb-btn-classic.fb-btn-order(data-ng-click='')
+								| X

@@ -1,0 +1,278 @@
+.panel.panel-default.fb-card-body(ng-click='changeOpenPanel(order)', ng-repeat='(orderNumber, order) in orders', style='background-color: #ffffff')
+	.panel-body(ng-if='order.items.length > 0')
+		.row(style='display: flex; align-items: center;padding-bottom:10px;')
+			.col-lg-1.col-xs-1
+				img.pull-left(fb-img-src='{{FBConfig.UPaths.ProductTypeImagePath + productItem.PhotoFileName}}', style='width:60px;')
+			.col-lg-2.col-xs-2
+				h4.pull-left(style='margin-left: 15px; font-size:20px; opacity:0.87;')
+					span(ng-if="order.OrderName===undefined || order.OrderName==='' || order.OrderName===null") Order {{orderNumber}}
+					span(ng-if="order.OrderName!=='' && order.OrderName!==null") {{order.OrderName}}
+			.col-lg-2.col-xs-2
+				h4(style='margin: 0px; font-size:16px; opacity:0.87;')
+					| {{order.total | currency}}
+				p(style='margin: 0px; font-size:14px; opacity:0.54;')
+					| {{getTotalItems(order)}} item
+					span(ng-if='getTotalItems(order) > 1')
+						| s
+			.col-lg-3.col-xs-3
+				img(onerror='this.style.display = "none"', ng-if="order.items[0]!==undefined && (order.items[0].Distributor|manufacturePhoto:Manufacturers) !== ''", fb-img-src='{{FBConfig.UPaths.DistImagePath + (order.items[0].Distributor|manufacturePhoto:Manufacturers)}}', alt='{{order.items[0].Distributor}}', style='height:42px;')
+				p(ng-if="order.items[0]!==undefined && (order.items[0].Distributor|manufacturePhoto:Manufacturers) === ''", style='margin: 0px; font-size:16px; opacity:0.87;') {{order.items[0].Distributor}}
+			.col-lg-3.col-xs-3(style='')
+				.togglebutton.pull-right.togglebutton-material-blue
+					label(style='opacity:0.54;')
+						span(ng-if='!order.selected') Not included in master
+						span(ng-if='order.selected') Included in master
+						input(type='checkbox', ng-model='order.selected', style='margin-left:20px;', checked='')
+			.col-lg-1.col-xs-1
+				i.mdi-navigation-more-vert.pull-right(style='color:#bababa;cursor:pointer;', ng-click='order.showingDD = !order.showingDD; $event.stopPropagation();')
+				.dd-c(ng-if='order.showingDD', click-outside='order.showingDD = false; $event.stopPropagation();')
+					.dd-item
+						button.fb-btn-dd(ng-click='cloneOrder(order); order.showingDD = false; $event.stopPropagation();')
+							| Clone
+					.dd-item
+						button.fb-btn-dd(ng-click='renameOrder(order); order.showingDD = false; $event.stopPropagation();')
+							| Rename
+					.dd-item
+						button.fb-btn-dd(ng-click='removeOrder(order); order.showingDD = false; $event.stopPropagation();')
+							| Remove
+					.dd-item
+						button.fb-btn-dd(ng-click='togglePricing(order); order.showingDD = false; $event.stopPropagation();')
+							| Show Prices
+					.dd-item
+						button.fb-btn-dd(ng-click='itemize(order); order.showingDD = false; $event.stopPropagation();')
+							| Itemize
+		.panel.panel-default.fb-card-body(ng-repeat='item in order.items', style='background-color: #ececec;\
+		margin-left: 25px; margin-right: 25px; margin-top: 10px; box-shadow:none;', ng-if='selectedOptPanel == order && item.ProductTypeID != 6', ng-class="{'fb-inner-card-top-margin':$first}")
+			div(style='width: 0px; height: 0px; position: relative;')
+				div(style='position: absolute; top: 5px; left: 5px; float: left; color: #000000;\
+				opacity: 0.54; font-size: 14px; width: 100px;')
+					p
+						| Line Item: {{ $index + 1 }}
+			.panel-body.row(style='display: flex; align-items: center; position:relative; padding-bottom:5px;')
+				div(style='position: absolute; top: 2px; right: 25px;')
+					img(ng-if="(item.Distributor|manufacturePhoto:Manufacturers) !== ''", fb-img-src='{{FBConfig.UPaths.DistImagePath + (item.Distributor|manufacturePhoto:Manufacturers)}}', alt='{{item.Distributor}}', style='height:26px;')
+					img(ng-if='item.Manufacturer !== item.Distributor',fb-img-src='{{FBConfig.UPaths.ManufacturerImagePath + item.Manufacturer + ".png"}}', alt='{{item.Manufacturer}}', style='height:26px;margin-left:5px')
+				div(style='margin:0px 0px 0px 0px;padding:0px 0px 0px 35px;', ng-class="{ 'col-lg-3' : item.DoorType == 'Double' && (item.leftSidelite != null || item.rightSidelite != null), 'col-lg-2' : item.DoorType != 'Double' || (item.DoorType == 'Double' && item.leftSidelite == null && item.rightSidelite == null)}")
+					.row.order-list-imgs.fb-order-sub-img
+						.col-lg-12.col-xs-12.col-xs-12(style='padding:5px 0px 0px 0px;min-width:130px;')
+							.door-families(ng-class='getBrickMouldingClass(item)',style="float:left")
+								img(fb-img-src='{{ FBConfig.UPaths.ProductImagePath + item.leftSidelite.photoName }}', ng-show='item.leftSidelite != null', ng-class='getClasses(item)', alt='', style='float: left;height:120px;')
+								img(fb-img-src='{{ FBConfig.UPaths.ProductImagePath + item.PhotoFileName }}', alt='', data-ng-class='getClasses(item, true)', data-ng-style="{'background-color': 'rgb(' + item.RGB + ')' }", style='max-width:80px;')
+								img.flipImage(fb-img-src='{{ FBConfig.UPaths.ProductImagePath + item.PhotoFileName }}', alt='', ng-show="item.DoorType == 'Double'", style='float: left; margin-left: 1px;max-width:80px;', ng-class='getClasses(item,true)')
+								img(fb-img-src='{{ FBConfig.UPaths.ProductImagePath + item.rightSidelite.photoName }}', ng-show='item.rightSidelite != null', alt='', style='float: left;height:120px;', ng-class='getClasses(item)')
+						.col-xs-12(style='padding:5px 0px 0px 0px;min-width:130px;', ng-if='item.Blinds')
+							img(style='max-width:80px;' src="{{BlindImagePath + item.Blinds.PhotoName}}")
+				div(ng-class="{ 'col-lg-7' : item.DoorType == 'Double' && (item.leftSidelite != null || item.rightSidelite != null), 'col-lg-8' : item.DoorType != 'Double' || (item.DoorType == 'Double' && item.leftSidelite == null && item.rightSidelite == null)}", style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+					h3.fb-order-sub-title
+						| {{item.Quantity}}
+						span(ng-if="!item.invertDimensions && item.productType != 'Moulding'")
+							span(ng-if='item.Width') - {{item.Width}} 
+							span(ng-if='item.Height')
+								| x {{item.Height}}
+						span(ng-if="item.invertDimensions == true && item.productType != 'Moulding'", style='color:Red')
+							span(ng-if='item.Height') - {{item.Height}} 
+							span(ng-if='item.Width')
+								| x {{item.Width}}
+						span(ng-if="item.Length && item.productType == 'Decking' && item.productType != 'Moulding'")
+							| x {{item.Length}}
+						| - {{item.Name}} 
+						span(ng-if="item.Length && item.productType != 'Decking'", style='margin-left: 30px')
+							span(ng-if="item.productType == 'Moulding'")
+								| {{item.MouldingType}}
+							|                             Length - {{item.Length}}
+						span(ng-if="item.Color && item.productType == 'Decking'")
+							| - {{item.Color}}
+						span.pull-right(ng-if='item.leftSidelite != null || item.rightSidelite != null')
+							span(ng-if='item.leftSidelite != null')
+								span(ng-if='item.rightSidelite != null') 2
+								span(ng-if='item.rightSidelite == null') 1
+								|                                 - {{item.leftSidelite.width}} x {{item.leftSidelite.height}} {{item.leftSidelite.name}}
+								|                                 Sidelight
+							span(ng-if='item.rightSidelite != null && item.leftSidelite == null')
+								| 1 - {{item.rightSidelite.width}}
+								| x {{item.rightSidelite.height}} {{item.rightSidelite.name}}
+					div(style='font-size:14px;opacity:0.54;',context-menu='{{buildContextMenu(item)}}')
+						| {{item.Distributor}} {{item.Style}}
+						span
+						span(ng-if='item.Location') - {{item.Location}}
+						span(ng-if="item.productType == 'Moulding'")  - {{item.Height}} x {{item.Width}} x {{item.Length}}, {{item.Material}}
+						span(ng-if='item.Material && item.productType != "Moulding"') - {{item.Material}} 
+						span(ng-if='item.Surface') - {{item.Surface}} 
+						span(ng-if='item.Thickness')
+							| -
+							| {{item.Thickness}}
+						span(ng-if='item.Core')  {{item.Core}}
+						span(ng-if='item.Sticking')
+							| - {{item.Sticking}}
+						span(ng-if='item.panelType') - {{item.panelType}}
+						span(ng-if='item.JambWidth')  - {{item.JambWidth}}
+						span(ng-if='item.JambType') {{item.JambType}} jamb
+						span(ng-if='item.DoorHanding')
+							| - {{item.DoorHanding}}
+						span(ng-if='item.DoorSwing') - {{item.DoorSwing}}
+						span(ng-if='item.HingeColor')  - {{item.HingeColor}}
+						span(ng-if='item.HingeType')  {{item.HingeType}} hinge
+						span(ng-if='item.sill') - {{item.sill.name}}
+						span(data-ng-show="item.GlassType != '' && item.GlassType != undefined") - {{item.GlassType}}
+						span(data-ng-show="item.GlassColor != '' && item.GlassColor != undefined") - {{item.GlassColor}}
+						span(data-ng-show="item.EnergyPackage != '' && item.EnergyPackage != undefined && item.EnergyPackage != 'N/A'")
+							| - {{item.EnergyPackage}}
+						span(data-ng-show="item.Operation != '' && item.Operation != undefined")
+							| - {{item.Operation}}
+						span(data-ng-show="item.OperatorType != '' && item.OperatorType != undefined && item.OperatorType != 'None'")
+							| - {{item.OperatorType}}
+						span(data-ng-show="item.Dimension != '' && item.Dimension != undefined && item.Dimension != 'None'")
+							| - {{item.Dimension}}
+						span(data-ng-show="item.Size != '' && item.Size != undefined && item.Size != 'None'")
+							| - {{item.Size}}							
+						span(data-ng-show="item.Finish != '' && item.Finish != undefined")
+							| - {{item.Finish}}
+						span(data-ng-show="item.Color != '' && item.Color != undefined && item.productType != 'Decking'")
+							| - {{item.Color}}
+						span(data-ng-show="item.Exposure != '' && item.Exposure != undefined")
+							| - {{item.Exposure}}' exposure
+						span(data-ng-show='item.OutsideCurb')  - outside curb
+						span(ng-repeat='acc in item.Accessories') - {{acc.AccessoryName}}
+						span(ng-repeat='acc in item.ExtAccessories') - {{acc.AccessoryName}}
+						span(ng-repeat='acc in item.AddOns') - {{acc.Name}}
+						span(ng-if='order.itemizePricing == true',style='font-size:10pt;font-weight:bold')
+							| Door:
+							span(ng-if='item.DoorPrice')
+								| {{item.DoorPrice | currency}} 
+							| , 
+							| Jamb:
+							span(ng-if='item.JambPrice')
+								| {{getJambPrice(item) | currency}} 
+							| , 
+							| Sill:
+							span(ng-if='item.sill')
+								| {{getSillPrice(item) | currency}} 
+							| , 
+							| Sidelite_L:
+							span(ng-if='item.leftSidelite')
+								| {{item.leftSidelite.price | currency}} 
+							| , 
+							| Sidelite_R:
+							span(ng-if='item.rightSidelite')
+								| {{item.rightSidelite.price | currency}} 
+							| 
+							span(ng-repeat='acc in item.Accessories')
+								| , {{acc.AccessoryName}} : {{acc.Price | currency}}
+
+							span(ng-repeat='acc in item.ExtAccessories')
+								| , {{acc.AccessoryName}} : {{acc.Price | currency}}
+						div(style='font-size:14px;opacity:0.54;')
+							| {{item.Notes}}
+						div(style='width:100%;margin-top:65px', ng-if='item.Blinds')
+							h3.fb-order-sub-title Factory Installed Blind - {{item.Blinds.FBSku}}
+							span(style='font-size:14px;opacity:0.54')
+								| {{item.Blinds.Color + ' - ' +  item.Blinds.BlindCode}}
+				.col-lg-2.col-xs-2(style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+					i.mdi-navigation-more-vert.pull-right(style='color:#bababa;cursor:pointer;margin-top:16px;margin-right:5px;', ng-click='item.showingDD = !item.showingDD; $event.stopPropagation();')
+					.dd-c(ng-if='item.showingDD', click-outside='item.showingDD = false; $event.stopPropagation();')
+						.dd-item
+							button.fb-btn-dd(ng-click='cloneItem(item); item.showingDD = false; $event.stopPropagation();')
+								| Clone
+						.dd-item
+							button.fb-btn-dd(ng-click='removeItem(item); item.showingDD = false; $event.stopPropagation();')
+								| Remove
+						.dd-item
+							button.fb-btn-dd(ng-click='AddOrderNotes(item); item.showingDD = false; $event.stopPropagation();')
+								| Add Notes
+						.dd-item
+							button.fb-btn-dd(ng-click='OverridePrice(item); item.showingDD = false; $event.stopPropagation();')
+								| Price Override		
+					button.btn.pull-right(type='button', data-ng-click='GetSelectedOrder(item,$event)', style='color:#bababa;cursor:pointer;font-weight:bold;font-size:16px;', ng-if='customerDoorQuotes !== undefined')
+						| Edit
+				div(ng-if='order.showPricing == true',style='position:absolute;right:35px;bottom:5px;font-size:14pt;opacity:.5')
+					span(ng-if='order.itemizePricing != true && item.TotalPrice > 0')
+						| {{item.TotalPrice | currency}}
+					span(ng-if='order.itemizePricing != true && item.TotalPrice <= 0')
+						| Call for price.
+		// Sub cards for windows
+		.panel.panel-default.fb-card-body(ng-repeat='item in order.items', style='background-color: #ececec;\
+		margin-left: 25px; margin-right: 25px; margin-top: 10px', ng-if='selectedOptPanel == order && item.ProductTypeID == 6')
+			div(style='width: 0px; height: 0px; position: relative;')
+				div(style='position: absolute; top: 5px; left: 5px; float: left; color: #000000;\
+				opacity: 0.54; font-size: 14px; width: 100px;')
+					p
+						| Line Item: {{ $index + 1 }}
+			.panel-body.row(style='display: flex; align-items: center;position:relative;padding-bottom:5px')
+				.col-lg-2(style='margin:0px 0px 0px 0px;padding:0px 0px 0px 35px;')
+					.row.order-list-imgs.fb-order-sub-img
+						.col-lg-12.col-xs-12.col-xs-12.no-padding
+							.door-families(ng-class='getFrameClassName(item)')
+								div(style='position: relative')
+									img(ng-if='item.WindowList.length > 1', ng-src='{{ item.PhotoFileName }}', alt='', data-ng-class='getClasses(item, true)', 
+									data-ng-style="{'background-color': 'rgb(' + item.RGB + ')' }", style='max-height: 100px;max-width:125px;')
+									img(ng-if='item.WindowList.length == 1', fb-scaled-img-data="{{item.WindowList[0].SelectedWindow}}")
+				.col-lg-8.col-xs-8(style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+					h3.fb-order-sub-title
+						| {{item.Quantity}}
+						span(ng-if='!item.invertDimensions')
+							span(ng-if='item.Width')
+								| - {{item.Width}}
+								span(ng-if='item.WidthFrac')
+									sup {{item.WidthFrac.num}}
+									| /
+									sub {{item.WidthFrac.denom}}
+							|  x 
+							span(ng-if='item.Height')
+								| {{item.Height}}
+								span(ng-if='item.HeightFrac')
+									sup {{item.HeightFrac.num}}
+									| /
+									sub {{item.HeightFrac.denom}}
+							span(ng-if='item.LegHeight')
+								|  x {{item.LegHeight}}
+						span(ng-if='item.HasErrors == true', style='color:Red')
+						| - {{item.Name}}
+					div(style='font-size:14px;opacity:0.54;',context-menu='contextmenu')
+						| {{item.Style}}
+						span
+						span(ng-if="item.Location && item.Location != ''") - {{item.Location}} - 
+						span
+							| {{item.Distributor}} {{item.ProductLine}}  {{item.OptionString}} 
+							span(ng-if="item.Description1 != '' && item.Description1 != undefined ")
+								br
+								| {{item.Description1}}
+								br
+						span.col-xs-12(ng-repeat='win in item.WindowList', style='border-bottom: 1px solid black; padding:5px')
+							img(ng-if='item.WindowList.length > 1', fb-scaled-img-data="{{win.SelectedWindow}}")
+							div(ng-class="{'window-sub-line-desc' : item.WindowList.length > 1}")
+								span(ng-if='item.WindowList.length > 1 && win.SelectedWindow.realWidth')
+									| - {{win.SelectedWindow.realWidth}}
+									span(ng-if='item.SelectedWindow.widthFraction')
+										sup {{win.SelectedWindow.widthFraction.num}}
+										| /
+										sub {{win.SelectedWindow.widthFraction.denom}}
+								span(ng-if='item.WindowList.length > 1 && win.SelectedWindow.realHeight')
+									| x  {{win.SelectedWindow.realHeight}}
+								span(ng-if='win.SelectedWindow.heightFraction')
+									sup {{win.SelectedWindow.heightFraction.num}}
+									| /
+									sub {{win.SelectedWindow.heightFraction.denom}}
+								span(ng-if='item.WindowList.length > 1 && win.SelectedWindow.legHeight')
+									|  x  {{win.SelectedWindow.legHeight}}
+								| - {{win.SelectedWindow.SubType}} - {{win.OptionsString}}
+							br
+				.col-lg-2.col-xs-2(style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+					i.mdi-navigation-more-vert.pull-right(style='color:#bababa;cursor:pointer;margin-top:16px;margin-right:5px;', ng-click='item.showingDD = !item.showingDD; $event.stopPropagation();')
+					.dd-c(ng-if='item.showingDD', click-outside='item.showingDD = false; $event.stopPropagation();')
+						.dd-item
+							button.fb-btn-dd(ng-click='cloneItem(item); item.showingDD = false; $event.stopPropagation();')
+								| Clone
+						.dd-item
+							button.fb-btn-dd(ng-click='removeItem(item); item.showingDD = false; $event.stopPropagation();')
+								| Remove
+						.dd-item
+							button.fb-btn-dd(ng-click='AddOrderNotes(item); item.showingDD = false; $event.stopPropagation();')
+								| Add Notes
+						.dd-item
+							button.fb-btn-dd(ng-click='OverridePrice(item); item.showingDD = false; $event.stopPropagation();')
+								| Price Override
+					button.btn.pull-right(type='button', data-ng-click='GetSelectedOrder(item,$event)', style='color:#bababa;cursor:pointer;font-weight:bold;font-size:16px;', ng-if='customerDoorQuotes !== undefined')
+						| Edit
+				div(ng-if='order.showPricing === true', style='position:absolute;right:35px;bottom:5px;font-size:14pt;opacity:.5')
+					span
+						| {{item.TotalPrice | currency}}

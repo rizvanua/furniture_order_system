@@ -1,0 +1,9 @@
+div(ng-if='levels.length !== 0')
+	.input-group
+		select.form-control(ng-options='item.title for item in levels track by item.id', ng-model='selected', style='height:40px;border:1px solid #00A7FC;color:#00A7FC;')
+		span.input-group-btn
+			button.fb-btn-classic.fb-btn-order(data-ng-click='AddToOrder(selected.id, selected.title)')
+				| ADD
+div(ng-if='levels.length === 0')
+	button.fb-btn-classic.fb-btn-order-update(data-ng-click='UpdateOrder()')
+		| UPDATE

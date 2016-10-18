@@ -1,0 +1,51 @@
+#syncModal.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', data-backdrop='static', aria-labelledby='syncModalLabel', aria-hidden='true')
+	.fb-sync-modal.modal-dialog.modal-lg
+		.modal-content(ng-if="!allDone")
+			.modal-header
+				h4#syncModalLabel.modal-title
+					| Performing First Time Load Of Catalogs 
+			.modal-body(style='text-align: center')
+				div
+					div
+						h4.modal-heading
+							| {{currentStep}}...
+					br
+					div
+						.progress
+							.progress-bar.progress-bar-info(ng-style="{'width' : currentPer}")
+					br
+					br
+					div
+						h4.modal-heading
+							| {{currentTwoWayStep}}...
+					br
+					div
+						.progress
+							.progress-bar.progress-bar-info(ng-style="{'width' : currentTwoWayPer}")
+					br
+					br
+					div
+						h4.modal-heading
+							| {{currentImgStep}}...
+					br
+					div
+						.progress
+							.progress-bar.progress-bar-info(ng-style="{'width' : currentImgPer}")
+					br
+			.modal-footer
+				div
+					p.fb-sync-footer-text()
+						| Welcome to the Fasterbids app! We are preforming an one-time initial load of all your Catalogs, this process may take up to one hour. Please do not close the app 
+						| until the download has completed. Thanks for your patience!
+		.modal-content(ng-if="allDone")
+			.modal-header
+				h4#syncModalLabel.modal-title
+					| First Time Load Of Catalogs Complete! 
+			.modal-body(style='text-align: center')
+				div(style="width:100%;height:100%;text-align:center;")
+					span.glyphicon.glyphicon-ok-circle(style="font-size:180px;color:#59B75C;")
+				br
+				br
+				div(style="width:100%;")
+					button.btn.btn-success(type="button", ng-click="continue()")
+						| CONTINUE

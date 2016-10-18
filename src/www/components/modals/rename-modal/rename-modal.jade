@@ -1,0 +1,16 @@
+#quoteModal.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-hidden='true')
+	.modal-dialog.modal-sm
+		.modal-content
+			.modal-header
+				h4.modal-title Re-Name Quote
+			.modal-body(style='text-align: center')
+				h4 Enter New Quote Name
+				br
+				form(name='renamequoteform')
+					.form-group(show-errors='')
+						input.form-control(type="text", placeholder='New Name', maxlength='100', data-ng-model='name')
+			.modal-footer
+				button.btn.btn-default(type='button', data-dismiss='modal')
+					| Close
+				button.btn.btn-primary.savemasterquote(type='button', data-ng-click='ReName(name)')
+					| Okay

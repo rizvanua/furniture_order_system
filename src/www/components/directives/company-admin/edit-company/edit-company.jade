@@ -1,0 +1,34 @@
+.col-xs-6
+	.form-group
+		label(for='companyName') Name
+		input#companyName.form-control(ng-model='company.name', type='text', placeholder='Name')
+.col-xs-6
+	.form-group
+		label(for='companyAddress') Address
+		input#companyAddress.form-control(ng-model='company.address1', type='text', placeholder='Address')
+.col-xs-6
+	.form-group
+		label(for='companyAddress2') Address 2
+		input#companyAddress2.form-control(ng-model='company.address2', type='text', placeholder='Address 2')
+.col-xs-6
+	.form-group
+		label(for='companyCity') City
+		input#companyCity.form-control(ng-model='company.city', type='text', placeholder='City')
+.col-xs-6
+	.form-group
+		label(for='companyState') State
+		input#companyState.form-control(ng-model='company.state', type='text', placeholder='State')
+.col-xs-6
+	.form-group
+		label(for='companyZip') Zip
+		input#companyZip.form-control(ng-model='company.zip', type='text', placeholder='Zip code')
+.col-xs-6
+	.form-group
+		label(for='companyPhone') Phone
+		input#companyPhone.form-control(type='text', ng-model='company.phone', placeholder='Phone')
+		button.blueBtn(style='font-size:x-large;margin-top:20px;', ng-click='saveClicked()') Save
+.col-xs-6
+	.form-group(style="margin-top:20px;")
+		label(for='companyImage') Company Logo
+		//input#companyImage(type='file', name='header_image')
+		img(src="{{companyImgPath + company.CompanyID + '.png'}}", style='width:90%')

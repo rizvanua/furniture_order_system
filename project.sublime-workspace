@@ -1,0 +1,834 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"com",
+				"CompanyID"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"ma",
+				"margin-left"
+			],
+			[
+				"pro",
+				"productType"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"fb",
+				"fbUser"
+			],
+			[
+				"cus",
+				"customer"
+			],
+			[
+				"rel",
+				"relative"
+			],
+			[
+				"map",
+				"mapRec"
+			],
+			[
+				"ng-",
+				"ng-click"
+			],
+			[
+				"show",
+				"showLinePricing"
+			],
+			[
+				"order",
+				"orderCard"
+			],
+			[
+				"win",
+				"windowDetails"
+			],
+			[
+				"json",
+				"jsonQuote"
+			],
+			[
+				"lineI",
+				"lineItem"
+			],
+			[
+				"user",
+				"userId"
+			],
+			[
+				"settin",
+				"settingLines"
+			],
+			[
+				"new",
+				"newDoors"
+			],
+			[
+				"main",
+				"mainQuote"
+			],
+			[
+				"op",
+				"options"
+			],
+			[
+				"settingLin",
+				"settingLine"
+			],
+			[
+				"loa",
+				"loadMfConfigData"
+			],
+			[
+				"door",
+				"doorLines"
+			],
+			[
+				"pric",
+				"priceKey"
+			],
+			[
+				"line",
+				"lineString"
+			],
+			[
+				"quot",
+				"quoteId"
+			],
+			[
+				"row",
+				"rowHTML"
+			],
+			[
+				"sett",
+				"settingLines"
+			],
+			[
+				"gr",
+				"groups"
+			],
+			[
+				"us",
+				"userId"
+			],
+			[
+				"list",
+				"listJSON"
+			],
+			[
+				"res",
+				"resolve"
+			],
+			[
+				"el",
+				"element"
+			],
+			[
+				"mas",
+				"masterQuote"
+			],
+			[
+				"po",
+				"position"
+			],
+			[
+				"pa",
+				"params"
+			],
+			[
+				"p",
+				"productTypeId"
+			],
+			[
+				"st",
+				"style2Id"
+			],
+			[
+				"fbM",
+				"fbMoulding"
+			],
+			[
+				"defer",
+				"deferred"
+			],
+			[
+				"Custom",
+				"CustomerDoorQuotes"
+			],
+			[
+				"pT",
+				"pTypeId"
+			],
+			[
+				"is",
+				"isFirstSync"
+			],
+			[
+				"_",
+				"_userSet"
+			],
+			[
+				"las",
+				"lastSync"
+			],
+			[
+				"sill",
+				"sills"
+			],
+			[
+				"s",
+				"swing"
+			],
+			[
+				"pr",
+				"promise"
+			],
+			[
+				"Man",
+				"Manufacturer"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"int",
+				"intDQS"
+			],
+			[
+				"defr",
+				"deferred"
+			],
+			[
+				"man",
+				"manufacturers"
+			],
+			[
+				"Com",
+				"CompanyID"
+			],
+			[
+				"oS",
+				"oStyle2"
+			],
+			[
+				"m",
+				"manufacturer"
+			],
+			[
+				"styl",
+				"styles2List"
+			],
+			[
+				"ord",
+				"orderTree"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/www/components/pages/super-admin/data-permissions/super-admin-data-permissions.controller.js",
+			"settings":
+			{
+				"buffer_size": 2417,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/www/config.js",
+			"settings":
+			{
+				"buffer_size": 10881,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 104.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"install	",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/assets",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/assets/js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/assets/js/lib",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/company-admin",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/company-admin/edit-company",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/company-admin/edit-group",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/company-admin/edit-user",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/company-admin/group-info",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/context-menu",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/fb-img",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/fb-scaled-img",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/order-button",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/order-card",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/qty-select",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/show-errors",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/skylight-blinds",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/interceptors",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/interceptors/auth",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/confirm-modal",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/customer-modal",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/login-modal",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/offline-modal",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/project-modal",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/settings-modal",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/sync-modal",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/company-admin",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/customers",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/filter",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/frontpage",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-decking",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-exterior",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-interior",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-moulding",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-siding",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-skylight",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/raw-glass",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin/companies",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin/data-permissions",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin/users",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/windows",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/auth",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/company-admin",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/database",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/decking",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/doors-ext",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/doors-int",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/img-service",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/loading",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/manufacturer",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/meta-data",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/moulding",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/product",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/quote",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/raw-glass",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/siding",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/skylights",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/super-admin",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/sync",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/user",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/utils",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/windows",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/legacy-js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/models",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/objects"
+	],
+	"file_history":
+	[
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/sync/sync.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/fb-img/fb-img.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/fb-scaled-img/fb-scaled-img.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/utils/utils.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/objects/utils.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/models/Core.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/assets/js/lib/b64.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin/data-permissions/data-permissions.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin/data-permissions/super-admin-data-permissions.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/interceptors/auth/auth.interceptors.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin/companies/super-admin-companies.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/super-admin/super-admin.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/config.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-exterior/order-exterior.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin/companies/companies.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/customers/customers.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/frontpage/frontpage.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/company-admin/company-admin.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin/super-admin.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin/super-admin.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin/users/super-admin-users.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/frontpage/frontpage.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/quote/quote.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/routes.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin/users/users.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/company-admin/company-admin.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/manufacturer/manufacturer.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin/data-permissions/data-permissions.scss",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/product/product.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin/users/users.html",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/index.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/skylights/skylights.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/company-admin/company-admin.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin/companies/companies.scss",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/auth/auth.service.js",
+		"/C/Users/Dalton/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/super-admin/companies/companies.html",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-interior/order-interior.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-interior/order-interior.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/settings-modal/settings.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/meta-data/meta-data.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/assets/css/base.css",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/company-admin/edit-group/edit-group.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/windows/windows.scss",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/company-admin/edit-group/edit-group.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/company-admin/group-info/group-info.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/company-admin/edit-user/edit-user.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/company-admin/edit-user/edit-user.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/company-admin/group-info/group-info.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/company-admin/edit-company/edit-company.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/settings-modal/settings.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/sync-modal/sync.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/sync-modal/sync.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-exterior/order-exterior.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-moulding/order-moulding.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-siding/order-siding.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-decking/order-decking.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/raw-glass/raw-glass.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/filter/filter.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-skylight/order-skylight.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/filter/filter.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/windows/windows.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/windows/windows.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/models/zMain.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/models/Windows.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/offline-modal/offline-modal.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/user/user.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/legacy-js/window-code.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/loading/loading.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-decking/order-decking.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-moulding/order-moulding.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-siding/order-siding.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/order-skylight/order-skylight.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/raw-glass/raw-glass.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/gulpfile.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/models/Decking.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/models/ExteriorDoors.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/models/IntDoors.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/models/Mouldings.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/models/RawGlass.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/models/Siding.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/models/Skylights.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/index.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/windows/windows.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/windows/windows.html",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/customers/customers.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/confirm-modal/confirm-modal.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/offline-modal/offline-modal.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/login-modal/login.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/project-modal/project-modal.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/order-card/order-card.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/README.md",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/customers/customers.scss",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/order-button/order-button.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/order-card/order-card.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/login-modal/login.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/customer-modal/customer-modal.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/qty-select/qty-select.jade",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/raw-glass/raw-glass.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/doors-int/doors-int.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/database/database.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/doors-ext/doors-ext.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/order-button/order-button.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/assets/css/roboto.css",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/qty-select/qty-select.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/skylight-blinds/skylight-blinds.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/assets/css/bootstrap.css",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/directives/context-menu/context-menu.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/legacy-js/window-customers.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/legacy-js/window-grid.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/legacy-js/window-icon-builder.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/legacy-js/window-options.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/legacy-js/window-summary.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/build/platforms/android/src/com/fasterbids/app/MainActivity.java",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/com/fasterbids/app/MainActivity.java",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/legacy-js/window-account.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/legacy-js/1window-utils.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/confirm-modal/confirm-modal.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/pages/raw-glass/raw-glass.html",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/notes-modal/notes-modal.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/override-modal/override-modal.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/project-modal/project-modal.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/modals/rename-modal/rename-modal.controller.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/decking/decking.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/img-service/img.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/moulding/moulding.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/components/services/siding/siding.service.js",
+		"/C/Users/Dalton/Documents/Fasterbids/FasterbidsPhonegap/src/www/assets/js/lib/angular-vertilize.js"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"C:\\Users\\Dalton\\Documents\\Fasterbids\\FasterbidsPhonegap\\src\\www",
+			"C:\\Users\\Dalton\\Documents\\Fasterbids\\FasterbidsPhonegap\\src",
+			"C:\\Users\\Dalton\\Documents\\Fasterbids\\FasterbidsPhonegap\\src\\www",
+			"C:\\Users\\Dalton\\Documents\\Fasterbids\\FasterbidsPhonegap\\src\\www\\assets\\css",
+			"C:\\Users\\Dalton\\Documents\\Fasterbids\\FasterbidsPhonegap\\src\\www\\assets",
+			"C:\\Users\\Dalton\\Documents\\Fasterbids\\FasterbidsPhonegap",
+			"C:\\Users\\Dalton\\Documents\\Fasterbids\\FasterbidsPhonegap\\src\\www",
+			"C:\\Users\\Dalton\\Documents\\Fasterbids\\FasterbidsPhonegap\\src",
+			"C:\\Users\\Dalton\\Documents\\Fasterbids\\FasterbidsPhonegap",
+			"C:\\Users\\Dalton\\Documents\\Fasterbids\\FasterbidsPhonegap\\src\\www"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"core",
+			"key",
+			"processFiles",
+			"GetBlobAccessKey",
+			"toastr",
+			"loadsettings",
+			"ClearLastSync",
+			"thisitem",
+			"changemanufa",
+			"distribu",
+			"SetDistributorInStorage",
+			"getavail",
+			"console.log",
+			"localQuoteID",
+			"processFiles",
+			"dataperm",
+			"TO:DO",
+			"state.go",
+			"location.reload(",
+			"state.go",
+			"state.go(",
+			"window.location.href",
+			"location",
+			"refresh",
+			"reload(",
+			"state.go(",
+			"reload(",
+			"location.reload(",
+			"state.go(",
+			"state.go('frontpage')",
+			"Auth",
+			"reload()",
+			"toastr",
+			"ExtAccessoryModel",
+			"== $0",
+			"fb_syncing_image_done",
+			"$state.go",
+			"location.reload",
+			"orderDetails",
+			"$scope.Order",
+			"confirm-modal",
+			"getAll()",
+			"GetManu",
+			"GetAllMan",
+			"delete",
+			"fbme",
+			"fbquo",
+			"refreshAccessories",
+			"refreshAllAccessories",
+			"refreshAccessories",
+			"GetOrderService",
+			"getDoorDefaults",
+			"refreshAllAccessories",
+			"refreshAccessories",
+			"$scope.door",
+			"console.log",
+			"previewmo",
+			"item.pre",
+			"PreviewModifier",
+			"reloadJambs",
+			"refreshAllAccessories",
+			"getPrices",
+			"refreshAllAccessories",
+			"refreshAccessories",
+			"$scope.selectedValues.type",
+			"availableBoreAccessories",
+			"console.log",
+			"$scope.orderAcc.accessories.jambAcc",
+			"console.log",
+			"SetUpdateOrderValues",
+			"exec",
+			"fonts/Rob",
+			"components",
+			"/components",
+			"material-design",
+			"material-desing",
+			"material_design",
+			"/assets",
+			"empty_logo",
+			"fbloading",
+			"fbLoading",
+			"plugins",
+			"initSearch",
+			"search",
+			"settingslines",
+			"SettingsLines",
+			"getAvailableStyles",
+			"fb_syncing_basic",
+			"fb_syncing_basic_progress",
+			"reload()",
+			"local",
+			"sidemenu",
+			"mlPushMenu",
+			"check",
+			"cloud",
+			"LoadSettings(",
+			"savese",
+			"product",
+			"lorderid",
+			"LOrderID",
+			"OverrideOrderPrice",
+			"GetOrders(",
+			"GetOrders\nGetOrders\nGetOrders\nGetOrders(",
+			"GetOrders",
+			"SaveSettings",
+			"UserBase",
+			"WebsiteBase",
+			"LogoutUrl",
+			"LoginUrl",
+			"ResetPasswordUrl",
+			"ForgotPasswordUrl",
+			"WebsiteBase",
+			"UserBase",
+			"GetCustomer(",
+			"SaveQuote(",
+			"currentQuoteId",
+			"getavaila",
+			"GetAvailableSills",
+			"$scope.getStyles2",
+			"setselected",
+			"SelectedDoorQuote",
+			"OrderDetails",
+			"item",
+			"$scope.orderde",
+			"orderTree",
+			"orderbutton",
+			"GetAvailableQuotes",
+			"getdefualts"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"pricingHeight",
+			"pricingWidth"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/www/components/pages/super-admin/data-permissions/super-admin-data-permissions.controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2417,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1705,
+								1705
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/www/config.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10881,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								128,
+								128
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "project.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 318.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,0 +1,30 @@
+h3(ng-if='!user.UserID') Create User
+h3(ng-if='user.UserID') Edit User
+.col-xs-6
+  .form-group
+    label(for='firstName') First Name
+    input#firstName.form-control(ng-model='user.firstName', type='text', placeholder='First Name')
+.col-xs-6
+  .form-group
+    label(for='lastName') Last Name
+    input#lastName.form-control(ng-model='user.lastName', type='text', placeholder='Last Name')
+.col-xs-6
+  .form-group
+    label(for='userEmail') Email
+    input#userEmail.form-control(ng-model='user.Email', type='text', placeholder='Email')
+.col-xs-6
+  .form-group
+    label(for='productKey') Password
+    input#productKey.form-control(ng-model='user.productKey', type='text', placeholder='Password')
+.col-xs-6
+  .form-group
+    label(for='userType') User Type
+    select#userType.form-control(ng-model='user.UserTypeID', ng-options='type.value as type.name for type in userTypes')
+.col-xs-6
+  .form-group
+    label(for='userGroup') Group
+    select#userGroup.form-control(ng-model='groupId', ng-options='group.Group.GroupID as group.Group.GroupName for group in groups')
+.col-xs-6
+  button.blueBtn(style='font-size:x-large;margin-right:10px;', ng-click='createUser()') Save
+  button.blueBtn(style='font-size:x-large;margin-right:10px;', ng-click='delete()') Delete
+  button.blueBtn(style='font-size:x-large', ng-click='close()') Cancel

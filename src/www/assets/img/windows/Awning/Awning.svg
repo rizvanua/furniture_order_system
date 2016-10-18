@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="112px" height="86px" viewBox="0 0 112 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>Awning</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="109.158594%" y1="103.9019%" x2="-47.8997565%" y2="-93.660386%" id="linearGradient-1">
+            <stop stop-color="#7CABBE" offset="0%"></stop>
+            <stop stop-color="#7BAABD" offset="0%"></stop>
+            <stop stop-color="#044E6C" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetInner1" result="shadowBlurInner1"></feGaussianBlur>
+            <feComposite in="shadowBlurInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.56 0" in="shadowInnerInner1" type="matrix" result="shadowMatrixInner1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+                <feMergeNode in="shadowMatrixInner1"></feMergeNode>
+            </feMerge>
+        </filter>
+        <rect id="path-3" x="0" y="0" width="103.87463" height="78" rx="0.451628825"></rect>
+    </defs>
+    <g id="Windows-App-v0.2-(Headers)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Icons-Copy" sketch:type="MSArtboardGroup" transform="translate(-627.000000, -48.000000)">
+            <g id="Awning" sketch:type="MSLayerGroup" transform="translate(631.377098, 52.388944)">
+                <g id="Rectangle-228" filter="url(#filter-2)">
+                    <use stroke="none" fill="url(#linearGradient-1)" fill-rule="evenodd" sketch:type="MSShapeGroup" xlink:href="#path-3"></use>
+                    <use stroke="#F5F5F5" stroke-width="3.6130306" fill="none" xlink:href="#path-3"></use>
+                </g>
+                <rect id="Rectangle-212-Copy-3" stroke="#F4F4F4" stroke-width="1.35488648" sketch:type="MSShapeGroup" x="3.03726988" y="3.07086614" width="97.8000901" height="71.8582677"></rect>
+                <path d="M3.27099729,75.4329478 L52.0464668,4.18885335 L100.821936,75.4329478" id="Path-276-Copy" stroke="#F4F4F4" stroke-width="0.507769145" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

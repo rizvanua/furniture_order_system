@@ -1,0 +1,54 @@
+.form-control{
+		border:0!important;
+		height:25px;
+		margin-top:10px;
+		}
+.btn:hover:not(.btn-link):not(.btn-flat):not(.btn-fab) {
+    box-shadow: none;
+}
+.btn-default-focus{
+	color:none!important;
+	background-color:white!important;
+	border-color:none!important;
+	text-decoration:none!important;
+	outline:none!important;
+	box-shadow:none!important;
+}
+.ui-select-choices-content, .ui-select-choices-group, .ui-select-choices-row {
+    width: 100%!important;
+}
+.btn {
+text-transform: none;
+font-size: $one-em-font;
+}
+.ui-select-match-item, .ui-select-search {
+    color: #555!important;
+    font-size: $one-em-font!important;
+}
+.ui-select-bootstrap .ui-select-choices-row.active>a{
+background-color:$grey;
+}
+.ui-select-choices-row-inner { 
+    font-size: 1em!important;
+}
+.glyphicon-remove {
+    top: 0;
+    color: $grey;
+}
+.zero-padd{
+padding-right: 0;
+padding-left: 0;
+}
+.no-right-padding{
+padding-right: 0;
+}
+.left-board {
+    border-left: 1px solid $grey;
+    text-align: center;
+    margin-top: 11px;
+    border-bottom: 1px solid $grey;
+}	
+.pull-right-select{
+	top: -10px;
+    position: absolute;
+}

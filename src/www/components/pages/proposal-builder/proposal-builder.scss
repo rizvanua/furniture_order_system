@@ -1,0 +1,321 @@
+$fs-blue:#00a7fc;
+$one-em-font:16px;
+$grey:#d2d2d2;
+.myname{
+width:30%;
+}
+
+.fs-blue{
+background-color:$fs-blue;
+}
+
+.proposal-page{
+.blue-button{
+	background-color: $fs-blue;
+    border: none;
+    color: white;
+    padding: 5px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+@import 'form-control';
+	.panel {
+	margin-bottom:0;
+	overflow: hidden;	
+    width: 100%;
+	box-shadow: 0 10px 6px 0 rgba(0,0,0,.12),0 10px 6px 0 rgba(0,0,0,.12);	
+	}
+.mrg {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+.checkbox{
+	&.style-blue{
+	height: 50px;
+	input[type=checkbox]:checked+.checkbox-material{
+			.check{
+			color:#00A7FC;
+				&:before{
+				color:#00A7FC;
+				}
+			}
+		}
+		.checkbox-material{
+			&:before{
+			top: -7px;
+			}
+			.check{
+			margin-right: 40px;
+			}
+		}
+		
+	}
+	label{
+	font-weight: bold;
+	}
+}
+
+.radio{
+	label{
+		.circle{
+		height: 20px;
+		width: 20px;
+		background: #fff;
+		}
+		.check{
+		height: 20px;
+		width: 20px;
+		&:after{
+			left: -15px;
+			top: -15px;
+			}
+		}
+	}
+
+}	
+.display-flex{
+display:flex;
+}
+.zerro-right {
+    margin-right: 0;
+    padding-right: 0;
+}
+.zerro-left {
+    margin-left: 0;
+    padding-left: 0;
+}
+.zerro-bottom{
+    margin-bottom: 0;
+	padding-bottom: 0;
+}
+.marg-zero {
+    margin-right: 0;
+    margin-left: 0;
+}
+.sixty-height{
+height:60px;
+}
+.lable-margin-top {
+    margin-top: 10px;
+}
+.intend {
+    margin-left: 17px;
+}
+.table-header{
+	display: flex;
+    justify-content: space-between;
+	border-bottom: 1px solid black;
+	.title{
+	font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 0px;
+	}
+	.amount {
+	font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 0px;
+	margin-right: 38px;	
+	}
+	}		
+table.table{	
+    > tbody, > thead{
+		tr{
+			> td, > th{
+			border:0;
+			width: 14.2%;
+			vertical-align: middle;
+			}
+		}
+	}
+
+}
+.toogle-block {
+    height: 40px;
+    background-color:#FFFFFF;
+	box-shadow: 0 10px 6px 0 rgba(0,0,0,.12),0 10px 6px 0 rgba(0,0,0,.12);
+}
+span.glyphicon.glyphicon-chevron-up{
+	display: flex;
+    justify-content: center;
+    float: none;
+    width: 100%;
+	cursor: pointer;
+	height: 50px;
+	&:before{
+	padding-top: 10px;
+		
+	}
+	&.rotate{
+		transform: rotate(180deg);
+		}
+}
+
+	.form-group{
+		/*display: flex;*/
+		&.block{
+			display: block;
+			padding-left: 10px;
+		}
+		.bobtail{
+		width:70%;
+		float:left;
+		}
+		.tail{
+		width:30%;
+		}
+		label{
+		&.hundred-min-width{
+		min-width:100px;
+			}			
+		}		
+	}
+	.ps-bold {
+		font-weight: bold;
+	}
+	.sd-label {
+    margin-bottom: 0;
+    margin-top: 10px;
+    margin-left: -20px;
+    margin-right: 5px;   
+	}
+
+	.summary-group{
+	margin-top: 60px;
+	margin-bottom:50px;
+	&:nth-child(even){
+	padding-right: 0px;
+	}
+	&:nth-child(odd){
+	padding-left: 0px;
+	}
+	
+    
+	}
+	input{
+		&.form-control{
+		border:0!important;
+		height:25px;
+		}
+	}
+	textarea{
+		&.form-control{
+		border: 1px solid #d2d2d2!important;
+		cursor: auto!important;
+		background-image:none;
+		padding: 10px;
+			}
+	}
+	
+	.proposal-block-title{
+		height: 50px;
+		padding-top: 10px;
+		.ps-switcher{
+			margin-top: 10px;
+		}
+		h4{
+			width: 25%;
+		}
+		.switch{
+		width:40px!important;
+		height:19px!important;
+		margin-top:10px!important;
+			small{
+			width:19px!important;
+			height:19px!important;
+			}
+			&.checked {
+			background:$fs-blue!important;
+			border-color:$fs-blue!important;
+			}
+		}
+	}
+		.totalcost {
+		display: flex;
+		justify-content: flex-end;
+		font-weight: bold;
+		font-size:$one-em-font;
+			p:nth-child(odd){
+			padding-right: 50px;
+			}
+	}
+	
+	canvas{
+	border: 1px solid $grey;;
+	
+	}
+	proposalacceptance{
+	@import 'signaturemod';
+		.wrap{
+		margin-left: 20%;
+		margin-right: 20%;
+			.cost-row {
+			display: flex;
+			font-size:$one-em-font;			
+				&>div{
+				margin-top: 15px;
+					&:first-child{
+					width: 40%;
+					text-transform: uppercase;
+					font-weight: bold;
+					}
+					&:last-child{
+					width: 60%;
+					border-bottom:1px solid $grey;
+					}
+						p{
+							margin: 0 0 5px;
+						}
+					}
+					&:last-child{
+						width:50%;
+					}
+					
+			}
+			.cost-row-total{
+					display:flex;
+					justify-content:flex-end;
+					font-size:$one-em-font;
+						&>div{
+						width: 30%;
+						text-transform: uppercase;
+						margin-top: 15px;
+							&:first-child{
+							font-weight: bold;
+							}
+							&:last-child{
+							border-bottom:1px solid $grey;
+							}
+							p{
+							margin: 0 0 5px;
+							}
+						}
+						
+					}
+					
+		}
+		
+		.form-group{
+			display: block;
+			margin-top: 50px;
+			margin-bottom: 50px;
+			label{
+			font-size:$one-em-font;
+			}
+		}
+		
+	}
+	installationagree{
+	@import 'signaturemod';	
+	}
+	paymentterms{
+	@import 'signature';
+	
+	}
+	input[type=checkbox]{
+	width:22px;
+	height:22px;
+	}
+	font-size:$one-em-font;
+}

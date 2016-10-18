@@ -1,0 +1,35 @@
+- var acceptances=[{name:"Windows", value:"calculate.totalWindows"}, {name:"Doors", value:"calculate.totalDoors"}, {name:"Siding", value:"calculate.totalSiding"},{name:"Decking", value:"calculate.totalDecking"},{name:"Total", value:"calculate.totalCost"}]
+div.wrap
+	- each acceptance in acceptances
+		- var nameclass = (acceptance.name === "Total" ? 'cost-row-total' : 'cost-row')
+		div(class=nameclass, ng-style="{display: #{acceptance.value}==0 ? 'none' : 'flex'}")
+			div
+				p
+					|#{acceptance.name}
+			div
+				p
+					|{{#{acceptance.value} | currency}}
+				
+div.form-group
+	label()
+		| Restrictions and Limitations
+	textarea.form-control.col-xs-12(style='min-height: 102px;', placeholder='Enter  details here')
+- var signatures=[{name:"Customer Signature", value:"", canvas:true}, {name:"Date", value:"Customer.date", canvas:false}, {name:"Print Name", value:"", canvas:false}]
+div.wrap-signature
+	.col-xs-6
+		.signature
+			canvas(ng-signature-pad="sign.propacceptcustomer", height="50", width="384")
+			p
+				|Customer Signature
+	.col-xs-6
+		.signature
+			p
+				|{{Customer.date}}
+			p
+				|Date
+
+		.signature
+			p
+			p
+				|Print Name
+			

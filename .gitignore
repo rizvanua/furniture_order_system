@@ -1,0 +1,7 @@
+logs
+*.log
+*.html
+build
+node_modules
+bower_components/
+style.min.css

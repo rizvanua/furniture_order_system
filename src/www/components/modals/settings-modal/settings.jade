@@ -1,0 +1,47 @@
+#settingsModal.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', data-backdrop='static', aria-labelledby='myModalLabel', aria-hidden='true')
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') ×
+        h4.modal-title
+          | Settings
+      .modal-body(style='text-align: center')
+        .row
+          table.table
+            tr
+              th(ng-repeat='(product, value) in orderTree', ng-click='changeSettingsProduct(value.productItem)', ng-class="{'tab-active' : settingsProductId == value.productItem.ProductTypeID,'tab-off' : settingsProductId != value.productItem.ProductTypeID}") {{value.productItem.ProductType}}
+        .row
+          .col-md-6.col-xs-6(data-ng-model='settingModel', style='overflow:auto;height:400px')
+            form(name='frmsettings')
+              div(data-ng-repeat='supplier in settingModel')
+                .row.margin-bottom-10.border-bottom.padding-bottom-10
+                  .col-md-12
+                    .row
+                      .col-md-6.col-xs-6
+                        img.img.img-responsive(fb-img-src='{{FBConfig.UPaths.DistImagePath + supplier.DistributorImage}}', alt='')
+                    .row
+                      .col-md-3.col-xs-3
+                        input(type='hidden', data-ng-model='supplier.ManufacturerID')
+                      .col-md-3.col-xs-3.no-padding
+                        | ON FACTOR
+                      .col-md-3.col-xs-3.no-padding
+                        | MARKUP
+                      .col-md-3.col-xs-3.no-padding
+                        | MARGIN
+                    .row(ng-repeat='settingLine in supplier.Lines track by $index', style='border-bottom:1px solid black;padding-top:5px')
+                      .col-md-3.col-xs-3
+                        | {{settingLine.Name}}
+                      .col-md-3.col-xs-3.no-padding
+                        .form-group(show-errors='')
+                          input(type='text', name='{{supplier.ManufacturerID}}', style='width: 70%', data-ng-model='settingLine.OnFactor', maxlength='5', required='')
+                      .col-md-3.col-xs-3.no-padding
+                        .form-group(show-errors='')
+                          input.floatonly(type='number', name='{{supplier.PhotoFileName}}', style='width: 70%', data-ng-model='settingLine.MarkUp', maxlength='5', required='')
+                      .col-md-3.col-xs-3.no-padding
+                        .form-group(show-errors='')
+                          input(type='text', style='width: 70%', value='{{(1-(1/(1+(settingLine.MarkUp/100))))*100 | number:0}}%', maxlength='5', disabled='')
+          .col-md-6.col-xs-6
+      .modal-footer
+        button.btn.btn-primary(type='button', data-ng-click='SaveSettings(suppliers)')
+          | Save & Close

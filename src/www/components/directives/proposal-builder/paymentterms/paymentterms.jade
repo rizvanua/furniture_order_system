@@ -1,0 +1,133 @@
+- var signatures=[{name:"Customer Signature", value:"", canvas:true}, {name:"Date", value:"Customer.date", canvas:false}]
+mixin  doubleselect(object, arr, placeholder, percentage)
+	ui-select(dynamic-ui-select ng-click="paymentCount('#{object}',vm.order.#{object})" ng-model="vm.order.#{object}" reset-search-input="false" required="true" ng-maxlength="40")
+				ui-select-match(placeholder="#{placeholder}" ng-click="paymentCount('#{object}',vm.order.#{object})")
+					span
+					if(percentage==undefined)
+						|{{$select.selected.description || $select.search}}
+						a.btn.btn-xs.btn-link.pull-right-select(ng-click="vm.clear($event, $select)")
+							i.glyphicon.glyphicon-remove
+					else
+						|{{$select.selected.description || $select.search | percentage:2}}
+						a.btn.btn-xs.btn-link.pull-right-select(ng-click="vm.clear($event, $select)")
+							i.glyphicon.glyphicon-remove
+				ui-select-choices(repeat="#{object} in (vm.#{arr} | filter: { description: $select.search }) track by #{object}.id" refresh="vm.refreshResults('#{arr}',$select,'#{object}')" refresh-delay="0")
+					div(ng-click="blackmen('#{arr}',#{object},$event, $select)")
+						span()
+							|{{#{object}.description}}
+
+div.form-group
+	div.col-md-6
+		| Payment Details
+	div.col-md-6
+		p.col-md-6
+			| Proposal Expiration Date
+		p.col-md-6
+			| some date
+textarea.form-control.col-xs-12(style='min-height: 102px;', placeholder='Enter details here')
+form
+	div.col-md-6
+		.form-group.col-xs-12.zerro-right.checkbox.style-blue
+			label()
+				input(type='checkbox', ng-model='pscheck.financing', style='margin-left:20px;')
+				span.checkbox-material
+					span.check
+				| Financing
+		.form-group.col-xs-12.zerro-right
+			label()
+				| Total Job Cost
+			input.form-control(type="text", value="{{calculate.totalCost | currency}}", readonly)
+		.form-group.col-xs-12.zerro-right
+			label.long()
+				| Payment Option
+			+doubleselect('paymentOption','paymentOptions','Enter payment option...')
+		.form-group.col-xs-6.zerro-right
+			label.hundred-min-width()
+				| Loan Term
+			.col-xs-8.zero-padd
+				+doubleselect('loanTerm','loanTerms','Choose term')
+			.col-xs-4.zero-padd.left-board
+				| months
+		.form-group.col-xs-6.zerro-right
+			label.hundred-min-width()
+				| Interest Rate
+			.col-xs-8.zero-padd
+				+doubleselect('interestRate','interestRates','Choose rate','percentage')
+			.col-xs-4.zero-padd.left-board
+				| APR
+		.form-group.col-xs-12.zerro-right
+			label()
+				| Monthly Payment
+			input.form-control(type="text",value="{{calculation.mounthlyPayment | currency}}")
+form
+	div.col-md-6
+		.form-group.col-xs-12.zerro-right.checkbox.style-blue
+			label()
+				input(type='checkbox', ng-model='pscheck.cash', style='margin-left:20px;')
+				span.checkbox-material
+					span.check
+				| Cash
+		.form-group.col-xs-12.zerro-right
+			label()
+				| Total Job Cost
+			input.form-control(type="text", value="{{calculate.totalCost | currency}}", readonly)
+		.form-group.col-xs-12.zerro-right
+			label.long()
+				| Cash Discount
+			+doubleselect('cashDiscount','cashDiscounts','Enter cash discount...')
+		.form-group.col-xs-12.zerro-right
+			label.long()
+				| Deposit
+			+doubleselect('deposit','deposits','Enter cash deposit...')
+		.form-group.col-xs-12.zerro-right
+			label()
+				| Balance Due
+			input.form-control(type="text",value="{{calculation.balanceDue | currency}}", readonly)
+
+form.col-md-12
+	p
+		|Credit Card Details
+	.row.marg-zero
+		.form-group.col-xs-12.col-md-4
+			input.form-control(type="text", placeholder='Credit Card Number')
+		.form-group.col-xs-12.col-md-4
+			+doubleselect('month','months','Exp Month')
+		.form-group.col-xs-6.col-md-2
+			+doubleselect('year','years','Exp Year')
+		.form-group.col-xs-6.col-md-2.zerro-right
+			input.form-control(type="text", ng-model="ccv", placeholder='CCV' maxlength="3")
+	.row.marg-zero
+		.form-group.col-xs-12.col-md-4
+			input.form-control(type="text", placeholder='Billing Address')
+		.form-group.col-xs-12.col-md-4
+			input.form-control(type="text", placeholder='City')
+		.form-group.col-xs-6.col-md-2
+			input.form-control(type="text", placeholder='State')
+		.form-group.col-xs-6.col-md-2.zerro-right
+			input.form-control(type="text", placeholder='Zip Code')
+	.row.marg-zero
+		.form-group.col-xs-12.checkbox.style-blue
+			label()
+				input(type='checkbox', ng-model='pscheck.authorize', style='margin-left:20px;')
+				span.checkbox-material
+					span.check
+				| I authorize {{main.user}} to charge remaining balance to he credit card on file (above) upon substantial completion of the installation
+		.form-group.col-xs-12.checkbox.style-blue
+			label()
+				input(type='checkbox', ng-model='pscheck.agree', style='margin-left:20px;')
+				span.checkbox-material
+					span.check
+				| I agree to the payment terms as described above
+form.col-md-12
+	div.wrap-signature
+		- each signature in signatures
+				div.signature
+					if(signature.canvas===true)
+						canvas(ng-signature-pad="sign.paymentcustomer", height="50", width="384")
+						p
+							| #{signature.name}	
+					else	
+						p
+							| {{#{signature.value}}}
+						p
+							| #{signature.name}						

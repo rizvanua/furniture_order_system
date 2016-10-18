@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="111px" height="88px" viewBox="0 0 111 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>Pic Bay</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="109.158594%" y1="103.9019%" x2="-47.8997565%" y2="-93.660386%" id="linearGradient-1">
+            <stop stop-color="#7CABBE" offset="0%"></stop>
+            <stop stop-color="#7BAABD" offset="0%"></stop>
+            <stop stop-color="#044E6C" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetInner1" result="shadowBlurInner1"></feGaussianBlur>
+            <feComposite in="shadowBlurInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.56 0" in="shadowInnerInner1" type="matrix" result="shadowMatrixInner1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+                <feMergeNode in="shadowMatrixInner1"></feMergeNode>
+            </feMerge>
+        </filter>
+        <path id="path-3" d="M0,0 L21.6781836,8.44329897 L21.6781836,76.3917526 L0,68.3505155 L0,0 Z"></path>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetInner1" result="shadowBlurInner1"></feGaussianBlur>
+            <feComposite in="shadowBlurInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.56 0" in="shadowInnerInner1" type="matrix" result="shadowMatrixInner1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+                <feMergeNode in="shadowMatrixInner1"></feMergeNode>
+            </feMerge>
+        </filter>
+        <path id="path-5" d="M81.2931885,0 L102.971372,8.44329897 L102.971372,76.3917526 L81.2931885,68.3505155 L81.2931885,0 Z"></path>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetInner1" result="shadowBlurInner1"></feGaussianBlur>
+            <feComposite in="shadowBlurInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.56 0" in="shadowInnerInner1" type="matrix" result="shadowMatrixInner1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+                <feMergeNode in="shadowMatrixInner1"></feMergeNode>
+            </feMerge>
+        </filter>
+        <rect id="path-7" x="28.9042448" y="9.64948454" width="45.1628825" height="68.3505155"></rect>
+    </defs>
+    <g id="Windows-App-v0.2-(Headers)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Icons-Copy" sketch:type="MSArtboardGroup" transform="translate(-311.000000, -168.000000)">
+            <g id="Pic-Bay" sketch:type="MSLayerGroup" transform="translate(366.722606, 212.425469) scale(-1, 1) translate(-366.722606, -212.425469) translate(315.236920, 173.425469)">
+                <g id="Rectangle-123-Copy-5" filter="url(#filter-2)">
+                    <use stroke="none" fill="url(#linearGradient-1)" fill-rule="evenodd" sketch:type="MSShapeGroup" xlink:href="#path-3"></use>
+                    <use stroke="#F5F5F5" stroke-width="3.6130306" fill="none" xlink:href="#path-3"></use>
+                </g>
+                <g id="Rectangle-123-Copy-6" filter="url(#filter-4)">
+                    <use stroke="none" fill="url(#linearGradient-1)" fill-rule="evenodd" sketch:type="MSShapeGroup" transform="translate(92.132280, 38.195876) scale(-1, 1) translate(-92.132280, -38.195876) " xlink:href="#path-5"></use>
+                    <use stroke="#F5F5F5" stroke-width="3.6130306" fill="none" xlink:href="#path-5"></use>
+                </g>
+                <g id="Rectangle-123-Copy-5" filter="url(#filter-6)">
+                    <use stroke="none" fill="url(#linearGradient-1)" fill-rule="evenodd" sketch:type="MSShapeGroup" xlink:href="#path-7"></use>
+                    <use stroke="#F5F5F5" stroke-width="3.6130306" fill="none" xlink:href="#path-7"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

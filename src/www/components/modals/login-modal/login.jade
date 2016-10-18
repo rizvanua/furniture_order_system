@@ -1,0 +1,43 @@
+#loginModal.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', data-backdrop='static', aria-labelledby='loginModalLabel', aria-hidden='true')
+	.modal-dialog.modal-sm(ng-keyup="$event.keyCode == 13 && enterClicked()")
+		.modal-content.user-login(ng-show='showing==\'login\'')
+			.modal-header
+				h4#loginModalLabel.modal-title
+					| User Login
+			.modal-body(style='text-align: center')
+				div
+					div
+						h4.modal-heading
+							| Please enter your user credentials
+						input.form-control.loginInput.fb-login-modal-email-input(placeholder='Email', ng-model='loginEmail')
+						input.form-control.loginInput.fb-login-modal-pass-input(type='password', placeholder='Product Key', ng-model='loginPassword')
+					div
+						br
+						a.open-forgot-password(href='javascript:void(0)', ng-click='showForgot()') Forgot Password?
+			.modal-footer
+				button.modal-ok-btn.btn.btn-primary(type='button', ng-click='login(loginEmail, loginPassword)')
+					| Okay
+		.modal-content.forgot-password(ng-show='showing==\'forgot\'')
+			.modal-header
+				h4#loginModalLabel.modal-title
+					| Forgot Password
+			.modal-body(style='text-align: center')
+				div
+					h4.modal-heading
+						| Please enter your email and we'll send you a new password
+					input.form-control.forgotPasswordInput.fb-reset-modal-email-input(placeholder='Email', ng-model='forgotEmail')
+			.modal-footer
+				button.btn.btn-primary.submit-forgot-password(type='button', ng-click='forgot(forgotEmail)')
+					| Okay
+		.modal-content.reset-password(ng-show='showing==\'reset\'')
+			.modal-header
+				h4#loginModalLabel.modal-title
+					| Reset Password
+			.modal-body(style='text-align: center')
+				div
+					h4.modal-heading
+						| Please enter your new password
+					input.form-control.resetPasswordInput.fb-reset-modal-pass-input(placeholder='Password', ng-model='resetPassword')
+			.modal-footer
+				button.btn.btn-primary.submit-reset-password(type='button', ng-click='reset(resetPassword)')
+					| Okay

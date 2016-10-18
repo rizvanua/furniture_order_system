@@ -1,0 +1,126 @@
+.container(style='padding: 0px; width: 100%')
+	#mp-pusher.mp-pusher
+		nav#mp-menu.mp-menu
+			.mp-level
+				ul(style='height:100%;')
+					li(style="padding:20px;height:160px;background-image:url('assets/img/menu_background.png');background-size:contain;position:relative;")
+						div(style='position:absolute;top:10px;right:10px;')
+							div(style='color:white;font-size:16px;cursor:pointer;', ng-click='logOut()') LOG OUT
+						ui-select.col-lg-12.col-xs-12.col-xs-12(ng-model='selectedUser', theme='bootstrap', ng-disabled='disabled', style='margin-top:80px', on-select='selectUser($item, $model)')
+							ui-select-match(style='color:white !important;', placeholder='Select a person')
+								span(style='color:white !important;display:inline-block;margin-top:5px;margin-left:2px;') {{$select.selected.Email}}
+							// NOTE: propsFilter is a custom filter defined in demo.js
+							ui-select-choices(repeat='user in filteredUsers = (Users)')
+								div(ng-bind-html='user.Email | highlight: $select.search') 
+					li.burger-tab
+						a(ui-sref="frontpage")
+							i.mdi-image-timer.burger-icon
+							| Current Project
+					li.burger-tab
+						a(ui-sref="customers")
+							i.mdi-social-group.burger-icon
+							| Manage Customers
+					li.burger-tab
+						a(href="" ng-click="showOfflineModal();sidemenu._resetMenu();")
+							i.mdi-file-cloud.burger-icon
+							| Manage Offline Mode
+					li.burger-tab
+						a(href="https://fasterbids.zendesk.com/hc/en-us")
+							i.mdi-action-help.burger-icon
+							| Help Center
+					li.burger-tab(ng-if='CurrUser.UserTypeID == 2')
+						a(ui-sref='company admin')
+							i.mdi-action-assignment-ind.burger-icon
+							| Company Admin
+					li.burger-tab(ng-if='CurrUser.UserTypeID == 1')
+						a(ui-sref='superadmin')
+							i.mdi-action-assignment-ind.burger-icon
+							| Super Admin
+					li.burger-tab()
+						a(ui-sref='proposal')
+							i.mdi-action-assignment-ind.burger-icon
+							| Proposal Builder
+		#mp-body.scroller
+			.scroller-inner
+				div(style='position: fixed; width: 100%; z-index: 99; top: 0px; min-width: 1024px;')
+					nav.navbar.header-color(style='margin-bottom: 0px')
+						.container-fluid(style='position:relative;z-index:99;')
+							// Brand and toggle get grouped for better mobile display
+							.navbar-header
+								i#trigger.mdi-navigation-menu.pull-left(style='margin-top:7px;font-size:30px;margin-left:15px')
+							ul.breadcrumb.pull-left(style='background-color:transparent; width:80%;margin:0px;padding:5px')
+								li
+									a(href='javascript:void(0)')
+										div(style='margin:0px')
+											a.btn.btn-default.header-text-color(data-target='#', style='margin:0px;padding-left:4px;padding-right:4px;')
+												| {{SelectedCustomer.name}}
+											ul.dropdown-menu
+								li
+									a(href='javascript:void(0)')
+										.btn-group(style='margin:0px')
+											a.btn.btn-default.dropdown-toggle.header-text-color(data-target='#', style='margin:0px;padding-left:4px;padding-right:4px;', data-toggle='dropdown')
+												span(ng-if='SelectedMasterQuote.ProjectName !== null') {{SelectedMasterQuote.JobName + " " + SelectedMasterQuote.ProjectName}}
+												span(ng-if='SelectedMasterQuote.ProjectName === null') {{SelectedMasterQuote.JobName}}
+												span.caret
+											ul.dropdown-menu.header-text-color
+												li(ng-class="{'active-quote': SelectedMasterQuote == masterQuote}", ng-repeat="masterQuote in filtered = (CustomerMasterQuotes | orderBy:'JobName' | filter: MasterQuoteFilter : true)")
+													a(href='#', ng-click='SetSelectedMasterQuote(masterQuote,$event);')
+														span(ng-if='masterQuote.ProjectName !== null') {{masterQuote.JobName + " " + masterQuote.ProjectName}}
+														span(ng-if='masterQuote.ProjectName === null') {{masterQuote.JobName}}
+										span(ng-if='masterQuote.ProjectName !== null') {{masterQuote.JobName + " " + masterQuote.ProjectName}}
+										span(ng-if='masterQuote.ProjectName === null') {{masterQuote.JobName}}
+						div(style='position:absolute;left:0px;right:0px;width:1024px;margin-left:auto;margin-right: auto;top:3px;padding-right:86px;z-index:1;')
+							img(fb-img-src="{{CurrUser.companyImagePath}}", style='height:42px;float:right;margin-top:2px;z-index:100;')
+				div(style='width:1024px;margin-left:auto;margin-right:auto;text-align:right;position:fixed;left:0;right:0px;top:25px;z-index:200;')
+					a.btn.btn-primary.btn-fab.btn-raised.mdi-content-add(href='javascript:void(0)', ng-click='showFab = !showFab;', ng-class="{'mdi-content-remove' : showFab == true}", style='z-index: 100; border: none; display:inline-block; float:right !important; z-index:200;', ng-style="{'background-color': (CurrUser.company.fabColorCode !== '') ? CurrUser.company.fabColorCode : '#00a7fc'}")
+				div(ng-if='showFab == true', style='position: fixed; background-color: Black; opacity: .5;\
+				width: 100%; height: 100%; z-index: 98; margin-top:-17px;', ng-click='hideFAB()')
+				.row(style='width:1024px;margin-top: 70px;margin-left:auto;margin-right:auto;')
+					div(ng-if='showFab == true', style='width:1024px;margin-left:auto;margin-right:auto;text-align:right;position:fixed;left:0;right:0;top:87px;z-index:100;')
+						div(style='width: 200px; float: right; z-index: 100')
+							div(ng-repeat='(product, value) in orderTree', style='color: Black; margin: 10px 10px 10px 10px; float: left; width: 100%; padding-right:10px;')
+								.pull-left.fb-fab-dd-text-c(ng-click='getStyles2(value.productItem)')
+									| {{value.productItem.ProductType}}
+								.btn.btn-primary.btn-fab.btn-raised(ng-click='getStyles2(value.productItem)', style="background-color: White; background-image: url('{{FBConfig.Paths.ProductTypeImagePath + value.productItem.PhotoFileName}}'); background-size: contain; background-repeat: no-repeat; background-position: 50% 50%; background-size: 45px; border:none;")
+					div(ng-if='!hasOrders')
+						div(style='margin-top:200px;')
+							div(style='text-align:center;font-weight:bold;font-size:24px;color:#767676;')
+								div(style='margin-bottom:40px;')
+									| You don't have any quotes for this project.
+									br
+									| Hit the round plus button to begin building quotes,
+									br
+									| or visit our 
+									a(style='text-decoration:underline;color:#00a7fc', href='/help') help center
+									|  to learn how to use Fasterbids.
+								img(src='assets/img/empty_logo.png')
+					div(style='margin-bottom:100px;')
+						div(ng-repeat='(product, value) in orderTree', style='color: black;width:980px;margin-left:auto;margin-right:auto;')
+							h1.fb-card-section-title(ng-if='value.products.hasItems == true')
+								| {{value.productItem.ProductType | uppercase}}
+							ordercard(orders='value.products', product-item='value.productItem', reload='getOrderDetails()', selected-customer='SelectedCustomer', customer-door-quotes='CustomerDoorQuotes', selected-master-quote='SelectedMasterQuote')
+			div(style='position:fixed;bottom:0px;width:100%;color:White;padding:5px;max-height:80%;overflow:auto;background:#424242;box-shadow: 0px -4px 4px 0px rgba(0,0,0,0.24);', ng-style="{'min-height': (showExportPanel) ? '250px' : '0px'}")
+				i.mdi-action-settings.pull-left(ng-if='!showExportPanel', ng-click='OpenSettingsModal()', style='font-size:30px;margin-left:15px')
+				div(style='width:160px;float:left;padding-left:20px;padding-top:5px')
+					div(style='margin-bottom:10px;min-height', ng-repeat='(product, value) in orderTree', ng-if='value.products.hasItems == true && showExportPanel === true')
+						strong {{value.productItem.ProductType | uppercase}}
+						div(ng-repeat='(orderNumber, order) in value.products', ng-if='order.items.length > 0 && order.selected')
+							span(ng-if="order.OrderName===undefined || order.OrderName==='' || order.OrderName===null") Order {{orderNumber}}
+							span(ng-if="order.OrderName !== '' && order.OrderName !== null") {{order.OrderName}}
+							span(style='float:right') {{order.total | currency}}
+					strong
+						| TOTAL: 
+					span.pull-right {{getQuoteTotal() | currency}}
+				div(style='width:1024px;position:absolute;left:0px;right:0px;margin-left:auto;margin-right:auto;text-align:right;padding:0px 0px 0px 0px;')
+					.pull-right(ng-if='showExportPanel === true',style='width:200px;min-height:200px')
+						label( style='width:100%')
+							input(ng-model='showLinePricing.isChecked', type='checkbox')
+							| SHOW LINE PRICES
+							br
+						button.btn.btn-primary(ng-if='showExportPanel === true', style='margin-left:0px', ng-click='ExportPDF()') Create PDF
+						button.btn.btn-primary(ng-if='showExportPanel === true', ng-click='epicorXML()') Epicor XML
+						button.btn.btn-primary(ng-if='showExportPanel === true', ng-click='EagleExport()') Epicor Eagle
+						button.btn.btn-primary(ng-if='showExportPanel === true', ng-click='QBExport()') QuickBooks Desktop
+					div(style='margin-left:auto;margin-right:auto;position:absolute;left:0px;right:0px;width:175px;padding:0px 0px 0px 0px;')
+						a(ng-click='showExportPanel = !showExportPanel', style='color:#FFFFFF;margin-top:5px;cursor:pointer;float:left')
+							strong EXPORT MASTER QUOTE

@@ -1,0 +1,40 @@
+form
+	div.col-md-6.summary-group
+		.form-group.display-flex
+			label.col-lg-6()
+				| Prepared for
+			input.form-control.prepared-for(ng-model='Customer.name')
+		.form-group.display-flex
+			label.col-lg-6()
+				| Email Address
+			input.form-control.email-address(ng-model='Customer.email')
+		.form-group.display-flex
+			label.col-lg-6()
+				| Physical Address
+			input.form-control.physical-address(ng-model='Customer.street')
+		.form-group.display-flex
+			label.col-lg-6()
+				| City State ZIP
+			input.form-control.zip(ng-model='Customer.FullLocation')
+		.form-group.display-flex
+			label.col-lg-6()
+				| Date
+			input.form-control.date(ng-model='Customer.date')
+	div.col-md-6.summary-group
+		.form-group.display-flex
+			label.col-lg-6()
+				| Phone Number
+			input.form-control.phone-number(ng-model='Customer.phone')
+		.form-group.display-flex
+			label.col-lg-6()
+				| Quote Number
+			input.form-control.quote-number()
+		.form-group.display-flex
+			label.col-lg-6()
+				| Price Level
+			input.form-control.price-l()
+		
+	textarea.form-control.col-xs-12(style='min-height: 102px;', placeholder='Enter Introduction details here')
+		
+				
+		

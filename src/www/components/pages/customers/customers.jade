@@ -1,0 +1,119 @@
+.container(style='padding: 0px; width: 100%')
+	// Push Wrapper
+	#mp-pusher.mp-pusher
+		// mp-menu
+		nav#mp-menu.mp-menu
+			.mp-level
+				ul(style='height:100%')
+					li(style="padding:20px;height:160px;background-image:url('assets/img/menu_background.png');background-size:contain;position:relative;")
+						div(style='position:absolute;top:10px;right:10px;')
+							div(style='color:white;font-size:16px;cursor:pointer;', ng-click='logOut()') LOG OUT
+					li.burger-tab
+						a(ui-sref="frontpage")
+							i.mdi-image-timer.burger-icon
+							| Current Project
+					li.burger-tab
+						a(ui-sref="customers")
+							i.mdi-social-group.burger-icon
+							| Manage Customers
+					li.burger-tab
+						a(href="" ng-click="showOfflineModal();sidemenu._resetMenu();")
+							i.mdi-file-cloud.burger-icon
+							| Manage Offline Mode
+					li.burger-tab
+						a(href="https://fasterbids.zendesk.com/hc/en-us")
+							i.mdi-action-help.burger-icon
+							| Help Center
+					li.burger-tab(ng-if='CurrUser.UserTypeID == 2')
+						a(ui-sref='company admin')
+							i.mdi-action-assignment-ind.burger-icon
+							| Company Admin
+					li.burger-tab(ng-if='CurrUser.UserTypeID == 1')
+						a(ui-sref='superadmin')
+							i.mdi-action-assignment-ind.burger-icon
+							| Super Admin
+		// /mp-menu
+		#mp-body.scroller
+			// this is for emulating position fixed of the nav
+			.scroller-inner
+				nav.navbar.header-color(style='margin-bottom: 0px')
+					.container-fluid(style='position:relative;z-index:99;')
+						// Brand and toggle get grouped for better mobile display
+						.navbar-header
+							i#trigger.mdi-navigation-menu.pull-left(style='margin-top:7px;font-size:30px;margin-left:15px')
+						ul.breadcrumb.pull-left(style='background-color:transparent; width:80%;margin:0px;padding:5px')
+							li
+								a(href='javascript:void(0)')
+									div(style='margin:0px')
+										a.btn.btn-default.header-text-color(data-target='#', style='margin:0px;padding-left:4px;padding-right:4px;')
+											| {{SelectedCustomer.name}}
+										ul.dropdown-menu
+						// /.navbar-collapse
+					// /.container-fluid
+					div(style='position:absolute;left:0px;right:0px;width:1024px;margin-left:auto;margin-right: auto;top:5px;padding-right:86px;z-index:1;')
+						img(fb-img-src='{{CurrUser.companyImagePath}}', alt='', style='height:42px;float:right;margin-top:0px;z-index:100;')
+				div(style='width:1024px;margin-left:auto;margin-right:auto;')
+					.middlewrapper(style='float:left')
+						div(style='float:left')
+							div.col-lg-4(style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+								div.col-lg-12(style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+									p.middlewrappertxt(style='') SALESPERSON
+									.salesmanPanel
+										ui-select.col-lg-12.col-xs-12.col-xs-12(ng-model='selectedUser', theme='bootstrap', ng-disabled='disabled', style='margin-top:22px', on-select='selectUser($item, $model)')
+											ui-select-match(style='color:white !important;', placeholder='Select a person')
+												span(style='color:black !important;display:inline-block;margin-top:5px;margin-left:2px;') {{$select.selected.Email}}
+											// NOTE: propsFilter is a custom filter defined in demo.js
+											ui-select-choices(repeat='user in filteredUsers = (Users)')
+												div(ng-bind-html='user.Email | highlight: $select.search')
+								div.col-lg-12(style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+									div.col-lg-3(style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+										p.middlewrappertxt(style='') CUSTOMERS
+									div.col-lg-9(style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+										button.btn.btn-primary(type='button', style="margin-left:50px", ng-click='OpenCustomerModal()')
+											| NEW
+								div.col-lg-12(style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+									.middlediv0(style='')
+										.middlediv1
+											ul
+												li.leftwrapertext(ng-click='selectCustomer(customer)', ng-class="{'customer-tab-selected': customer == SelectedCustomer}", data-ng-repeat="customer in filtered = (Customers | orderBy:'name' | filter: {UserID: SelecteduserID, name : filterCustomer} )") {{customer.name}}
+							div.col-lg-8(style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+								div.col-lg-12(style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+									.middlewrapperdivright(style='')
+										.middlediv2
+											.middlediv2in
+												span.middlediv2text {{SelectedCustomer.name}}
+												p.middlediv2text2 {{SelectedCustomer.email}}
+												p.middlediv2text2 {{SelectedCustomer.phone}}
+											.middlediv2edit
+												//span.edittrash(ng-click='EditCustomer()')
+													i.mdi-editor-mode-edit
+												button.btn(type='button', ng-click='EditCustomer()', style='color:#7F7F7F;cursor:pointer;font-weight:bold;font-size:16px;')
+													| Edit
+												span.edittrash()
+													i.mdi-action-delete(ng-click='DeleteCustomer()', style="position:relative;top:5px;")
+											div(style='clear:both;')
+								div.col-lg-12(style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+									div.col-lg-2(style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+										p.middlewrappertxt2 PROJECTS
+									div.col-lg-10(style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+										button.btn.btn-primary(type='button', style="margin-left:10px", ng-click='OpenQuoteModal()')
+											| NEW
+								div.col-lg-12(style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;")
+									.middlediv3(style='overflow:auto')
+										.raw1(ng-click='SelectMasterQuote(masterQuote,$event)', ng-repeat="masterQuote in filtered = (CustomerMasterQuotes | orderBy:'JobName' | filter: MasterQuoteFilter : true)")
+											span.middlediv3text1
+												span(ng-if='masterQuote.ProjectName !== null') {{masterQuote.JobName + " " + masterQuote.ProjectName}}
+												span(ng-if='masterQuote.ProjectName === null') {{masterQuote.JobName}}
+											span.middlediv3text2 {{getDate(masterQuote)}}
+											span.middlediv3text3
+												span.middlediv3text3(style="z-index:50;position:relative;")
+													i.mdi-navigation-more-vert(style='color:#bababa;cursor:pointer;', ng-click='masterQuote.showingDD = !masterQuote.showingDD; $event.stopPropagation();')
+														.dd-c(ng-if='masterQuote.showingDD', click-outside='masterQuote.showingDD = false; $event.stopPropagation();', style="z-index:50;position:absolute;")
+															.dd-item
+																button.fb-btn-dd(ng-click='EditMasterQuote(masterQuote); masterQuote.showingDD = false; $event.stopPropagation();', style="z-index:50;")
+																	| Edit
+															.dd-item
+																button.fb-btn-dd(ng-click='CloneMasterQuote(masterQuote); masterQuote.showingDD = false; $event.stopPropagation();', style="z-index:50;")
+																	| Clone
+												span(ng-click='DeleteMasterQuote(masterQuote); $event.stopPropagation()', style="z-index:1;position:relative;")
+													i.mdi-action-delete(style="z-index:1;position:relative;")

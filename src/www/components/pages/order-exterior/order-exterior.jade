@@ -1,0 +1,360 @@
+.row(style='position:fixed;width:100%;z-index:100;min-width:1080px;')
+		nav.navbar.header-color(style='background-color: #424242; margin-bottom: 0px')
+				.container-fluid(style='position:relative;z-index:99;')
+					i.mdi-navigation-arrow-back.pull-left.header-text-color(ng-click='goBack()', style='margin:10px;cursor:pointer;')
+					|             
+					ul.breadcrumb.pull-left(style='background-color:transparent; width:80%;margin:0px;padding:5px')
+						li
+							a(href='#/')
+								i.mdi-action-home.header-text-color(style='vertical-align:middle;cursor:pointer;')
+						|                 
+						li
+							a(href='javascript:void(0)')
+								.btn-group(style='margin:0px')
+									a.btn.btn-default.dropdown-toggle.header-text-color(style='margin:0px;padding-left:4px;padding-right:4px;') {{thisItem.SelectedCustomer.name}}
+						|                 
+						li
+							a(href='javascript:void(0)')
+								.btn-group.header-text-color(style='margin:0px')
+									a.btn.btn-default.dropdown-toggle.header-text-color(data-target='#', style='margin:0px;padding-left:4px;padding-right:4px;', data-toggle='dropdown')
+										span(ng-if='thisItem.SelectedMasterQuote.ProjectName !== null')
+											| {{thisItem.SelectedMasterQuote.JobName + &quot; &quot; + thisItem.SelectedMasterQuote.ProjectName}}
+										span(ng-if='thisItem.SelectedMasterQuote.ProjectName === null') {{thisItem.SelectedMasterQuote.JobName}}
+										span.caret
+									|                             
+									ul.dropdown-menu.header-text-color
+										li(ng-class="{'active-quote': thisItem.SelectedMasterQuote == masterQuote}", ng-repeat="masterQuote in filtered = (thisItem.CustomerMasterQuotes | orderBy:'JobName' )")
+											a(ng-click='changeMasterQuote(masterQuote)')
+												span(ng-if='masterQuote.ProjectName !== null') {{masterQuote.JobName + &quot; &quot; + masterQuote.ProjectName}}
+												span(ng-if='masterQuote.ProjectName === null') {{masterQuote.JobName}}
+						|                 
+						li
+							a(href='javascript:void(0)')
+								.btn-group(style='margin:0px')
+									a.btn.btn-default.dropdown-toggle.header-text-color(data-target='#', style='margin:0px;padding-left:4px;padding-right:4px;', data-toggle='dropdown')
+										| {{thisItem.ProductTypeItem.ProductType}}
+										span.caret.header-text-color
+									|                             
+									ul.dropdown-menu.header-text-color
+										li(ng-repeat='item in thisItem.ProductTypes')
+											a(ng-click='getStyles2(item)', href='javascript:void(0)') {{item.ProductType}}
+						|                 
+						li
+							a(href='javascript:void(0)')
+								.btn-group(style='margin:0px')
+									a.btn.btn-default.dropdown-toggle.header-text-color(data-target='#', style='margin:0px;padding-left:4px;padding-right:4px;', data-toggle='dropdown')
+										| {{selectedManufacturer.name}}
+										span.caret.header-text-color
+									|                             
+									ul.dropdown-menu.header-text-color
+										li(ng-repeat='mf in thisItem.Manufacturers')
+											a(ng-click='changeDistributor(mf)', href='javascript:void(0)') {{mf.name}}
+						|                 
+						li
+							a(href='javascript:void(0)')
+								.btn-group(style='margin:0px')
+									a.btn.btn-default.dropdown-toggle.header-text-color(data-target='#', style='margin:0px;padding-left:4px;padding-right:4px;', data-toggle='dropdown')
+										| {{door.style[0]}}
+										span.caret
+									|                             
+									ul.dropdown-menu.header-text-color
+										li(ng-repeat='style in thisItem.StylesList')
+											a(ng-click='StyleClick(style)', href='javascript:void(0)') {{style.Style}}
+										|                                 
+										li
+											a(ng-click='StyleClick()') All
+				|         
+				div(style='position:absolute;left:0px;right:0px;width:1024px;margin-left:auto;margin-right: auto;top:3px;padding-right:86px;z-index:1;')
+					img(fb-img-src='{{CurrUser.companyImagePath}}', alt='', style='height:42px;float:right;margin-top:2px;z-index:100;')
+				// /.container-fluid
+div(style="width:100%;overflow-y:scroll;height:100%")
+	.col-lg-10.col-lg-offset-1.row.col-xs-10.col-xs-offset-1(style='width:1080px;margin-top:70px;')
+		div(vertilize-container='')
+			.col-lg-7.col-xs-7(style='padding:0px 10px 0px 0px;')
+				h4.pull-left CONFIGURATOR
+				|             
+				.panel.panel-default.pull-left.col-lg-12.col-xs-12(vertilize='')
+					.panel-body
+						.col-lg-12.col-xs-12.pull-left(style='text-align: center; margin-bottom:50px;')
+							.col-lg-2.col-xs-2(ng-click="ChangeDoorType('Single')", ng-class="{'tab-active' : selectedValues.type == 'Single','tab-off' : selectedValues.type != 'Single'}")
+								h5 SINGLE
+							|                         
+							.col-lg-2.col-xs-2(ng-click="ChangeDoorType('Double')", ng-class="{'tab-active' : selectedValues.type == 'Double','tab-off' : selectedValues.type != 'Double'}")
+								h5 DOUBLE
+							|                         
+							.col-lg-2.col-xs-2(style='border-bottom: 2px solid #d8d8d8')
+								h5 PATIO
+						|                     
+						.col-lg-12.col-xs-12(style='padding:0px 0px 0px 0px;')
+							.col-lg-12.col-xs-12(style='padding:0px 0px 0px 0px;')
+								.form-group.col-lg-6.col-xs-6
+									qtyfield(quantity='Quantity')
+								|                             
+								.form-group.col-lg-3.col-xs-3(ng-if="selectedValues.type == 'Single'")
+									label Width
+									|                                 
+									select.form-control(ng-change='getPrices()', ng-model='selectedValues.width')
+										option(ng-repeat='widthItem in door.singleWidths | orderBy : sortDimensions') {{widthItem}}
+								|                             
+								.form-group.col-lg-3.col-xs-3(ng-if="selectedValues.type == 'Double'")
+									label Width
+									|                                 
+									select.form-control(ng-change='getPrices()', ng-model='selectedValues.width')
+										option(ng-repeat='widthItem in door.doubleWidths |  orderBy : sortDimensions') {{widthItem}}
+								|                             
+								.form-group.col-lg-3.col-xs-3
+									label Height
+									|                                 
+									select.form-control(ng-model='selectedValues.height')
+										option(data-ng-repeat='height in door.height | orderBy : sortDimensions') {{height}}
+							|                         
+							.col-lg-12.col-xs-12(style='padding:0px 0px 0px 0px;')
+								.form-group.col-lg-6.col-xs-6
+									label.control-label Jamb Type
+									|                                 
+									select.form-control(data-ng-change='changeJambType()', data-ng-model='selectedValues.jambType')
+										option(value='-1') None
+										|                                     
+										option(data-ng-repeat='leaf in jambTree | filter : selectedValues.type') {{leaf.jambType}}
+								|                             
+								.form-group.col-lg-6.col-xs-6
+									label.control-label Hinge Type
+									|                                 
+									select.form-control(ng-model='selectedHingeType', ng-options='o as o for o in availableHingeTypes', ng-change='getHingeColors()')
+							|                         
+							.col-lg-12.col-xs-12(style='padding:0px 0px 0px 0px;')
+								.form-group.col-lg-6.col-xs-6
+									label.control-label Jamb Width
+									|                                 
+									select.form-control(data-ng-change='changeJambWidth()', data-ng-model='selectedValues.jambWidth', ng-options='width.width as width.width for width in currentJamb.widths | filter: selectedValues.height')
+								|                             
+								.form-group.col-lg-6.col-xs-6(data-ng-show="selectedValues.jambType != '-1'")
+									label.control-label Hinge Color
+									|                                 
+									select.form-control(ng-model='selectedHingeColor', ng-options='acc.colorName for acc in availableHingeAccessories')
+										option Antique Brass
+							|                         
+							.col-lg-12.col-xs-12(style='padding:0px 0px 0px 0px;')
+								.form-group.col-lg-6.col-xs-6
+									label.control-label Jamb Option
+									|                                 
+									ui-select(multiple='', ng-model='orderAcc.accessories.jambOptions', theme='bootstrap', on-select='AccessoryAdd($item, $model)', on-remove='AccessoryRemove($item, $model)')
+										ui-select-match(placeholder='Select accessories...') {{$item.AccessoryName}}
+										|                                     
+										ui-select-choices(repeat='accessory in availableJambAccessories', refresh="refreshAccessories($select.search, 'Bore')", refresh-delay='300')
+											div(data-ng-bind-html='accessory.AccessoryName | highlight: $select.search')
+								|                             
+								.form-group.col-lg-6.col-xs-6
+									label.control-label Sill Type
+									|                                 
+									select.form-control(data-ng-change='getPrices()', data-ng-model='selectedValues.sillType')
+										option(data-ng-repeat='sill in availableSills') {{sill}}
+							|                         
+							.col-lg-12.col-xs-12(style='padding:0px 0px 0px 0px;')
+								.form-group.col-lg-6.col-xs-6
+									label.control-label Bore Options
+									|                                 
+									ui-select(multiple='', ng-model='orderAcc.accessories.boreOptions', theme='bootstrap', on-select='AccessoryAdd($item, $model)', on-remove='AccessoryRemove($item, $model)')
+										ui-select-match(placeholder='Select accessories...') {{$item.AccessoryName}}
+										|                                     
+										ui-select-choices(repeat='accessory in availableBoreAccessories', refresh="refreshAccessories($select.search, 'Bore')", refresh-delay='300')
+											div(data-ng-bind-html='accessory.AccessoryName | highlight: $select.search')
+								|                             
+								.form-group.col-lg-6.col-xs-6
+									label.control-label Special Preps
+									|                                 
+									ui-select(multiple='', ng-model='orderAcc.accessories.prepOptions', theme='bootstrap', on-select='AccessoryAdd($item, $model)', on-remove='AccessoryRemove($item, $model)')
+										ui-select-match(placeholder='Select accessories...') {{$item.AccessoryName}}
+										|                                     
+										ui-select-choices(repeat='accessory in availablePrepAccessories', refresh="refreshAccessories($select.search, 'Special Prep')", refresh-delay='300')
+											div(data-ng-bind-html='accessory.AccessoryName | highlight: $select.search')
+							|                         
+							.col-lg-12.col-xs-12(style='padding:0px 0px 0px 0px;')
+								.form-group.col-lg-6.col-xs-6
+									label.control-label Misc Options
+									|                                 
+									ui-select(multiple='', ng-model='orderAcc.accessories.miscOptions', theme='bootstrap', on-select='AccessoryAdd($item, $model)', on-remove='AccessoryRemove($item, $model)')
+										ui-select-match(placeholder='Select accessories...') {{$item.AccessoryName}}
+										|                                     
+										ui-select-choices(repeat='accessory in availableMiscAccessories', refresh="refreshAccessories($select.search, 'Misc')", refresh-delay='300')
+											div(data-ng-bind-html='accessory.AccessoryName | highlight: $select.search')
+			|         
+			.col-lg-5.col-xs-5(style='padding:0px 0px 0px 0px;')
+				h4.pull-left PREVIEW
+				|             
+				.panel.panel-default.pull-left.col-lg-12.col-xs-12(vertilize='')
+					.panel-body
+						.row
+							.col-lg-6.col-xs-6.detail-product-img.door-image.no-padding(style='text-align: center')
+								.shadow(style='float: left', ng-class='getBrickMouldingClass()')
+									a.img-shadow
+										img.img-responsive(fb-img-src='{{FBConfig.UPaths.ProductImagePath+leftSidelite.photoName}}', ng-style='imgHeight', height='150', ng-class='getFrameClasses()', style='float: left;', alt='image', data-ng-show='leftSidelite')
+									|                                 
+									a.img-shadow
+										img.img-responsive(fb-img-src='{{FBConfig.UPaths.ProductImagePath + getPhotoSuffix(door.photoName)}}', ng-class='getFrameClasses(true)', ng-style='imgHeight', height='150', onerror="this.onerror = null; this.src = 'http://fbpublicstorage.blob.core.windows.net/uploadfiles/products/noimage.png';", style='float: left; display: block', alt='image', data-ng-show="selectedValues.type == 'Single' || selectedValues.type == 'Double'")
+									|                                 
+									a.img-shadow
+										img.img-responsive.flipImage(fb-img-src='{{FBConfig.UPaths.ProductImagePath + getPhotoSuffix(door.photoName)}}', ng-style='imgHeight', height='150', ng-class='getFrameClasses()', alt='image', style='float: left;', data-ng-show="selectedValues.type == 'Double'")
+									|                                 
+									a.img-shadow
+										img.img-responsive(fb-img-src='{{FBConfig.UPaths.ProductImagePath+rightSidelite.photoName}}', ng-style='imgHeight', ng-class='getFrameClasses()', height='150', style='float: left;', alt='image', data-ng-show='rightSidelite')
+								|                             
+								button.fb-btn-classic.fb-btn-classic-door-order(ng-click='clearSidelites()', ng-show='leftSidelite || rightSidelite', style='margin-top: 10px') Clear sidelights
+								|                             
+								div(data-ng-if="door.photoName == null || door.photoName == ''")
+									img(fb-img-src='/uploadfiles/products/noimage.png')
+								|                             
+								.row.col-lg-12.col-xs-12.col-md-12(style='text-align: center')
+									img(style='text-align: center', fb-img-src='{{FBConfig.UPaths.HandingImagesPath}}{{handingImgName}}')
+								|                             
+								.row.col-lg-12.col-xs-12.col-md-12.fb-door-toggle-c
+									button.fb-btn-toggle(ng-click="changeHanding('Right Hand')", style='width: 50%; margin: 0px; float: left', data-ng-class="{'active': selectedValues.doorHanding == 'Right Hand'}") Right
+									|                                 
+									button.fb-btn-toggle(ng-click="changeHanding('Left Hand')", style='width: 50%; margin: 0px; float: right', data-ng-class="{'active': selectedValues.doorHanding == 'Left Hand'}") Left
+								|                             
+								.row.col-lg-12.col-xs-12.col-md-12.fb-door-toggle-c
+									button.fb-btn-toggle(ng-click="changeSwing('Outswing')", style='width: 50%; margin: 0px; float: left', data-ng-class="{'active': selectedValues.doorSwing == 'Outswing'}") Outswing
+									|                                 
+									button.fb-btn-toggle(ng-click="changeSwing('Inswing')", style='width: 50%; margin: 0px; float: right', data-ng-class="{'active': selectedValues.doorSwing == 'Inswing'}") Inswing
+							|                         
+							.col-lg-6.col-xs-6
+								img(fb-img-src="{{FBConfig.UPaths.ManufacturerImagePath + door.manufacturer + '.png'}}", style='width:100%;max-height:100px;margin-bottom:5px;')
+								|                             
+								p.col-lg-12.col-xs-12(style='text-align:center;font-size:20px;color:#000000;opacity:1;') {{door.name}}
+								|                             
+								h5.col-lg-12.col-xs-12(style='text-align:center', ng-if="door.distributor !== undefined && door.distributor !== null && door.distributor !== ''")
+									strong {{door.distributor}}
+								|                             
+								.col-lg-12.col-xs-12(style='font-size:14px;opacity:0.54;')
+									span  {{door.style[0]}}
+									span(ng-if='item.location') - {{item.location}}
+									span(ng-if='door.species && door.species.length > 0') - {{door.species[0]}} 
+									span(ng-if='door.Thickness')
+										| -
+										| {{door.thickness}}
+									span(ng-if='door.core')  {{door.core}}
+									span(ng-if='door.sticking') - {{door.sticking}}
+									span(ng-if='door.panels && door.panels.length > 0') - {{door.panels[0]}}
+									span  - {{selectedValues.jambWidth}}
+									span(ng-if='selectedValues.jambType') {{selectedValues.jambType}} jamb
+									span(ng-if='selectedValues.doorHanding') - {{selectedValues.doorHanding}}
+									span(ng-if='selectedValues.doorSwing') - {{selectedValues.doorSwing}}
+									span(ng-if='selectedHingeColor.colorName')  - {{selectedHingeColor.colorName}}
+									span(ng-if='selectedHingeType')  {{selectedHingeType}} hinge
+									span(ng-if='selectedValues.sillType') - {{selectedValues.sillType}}
+									span(ng-repeat='acc in door.Accessories') - {{acc.AccessoryName}}
+									span(ng-repeat='acc in door.ExtAccessories') - {{acc.AccessoryName}}
+								|                             
+								.col-lg-12.col-xs-12(style='margin-top:30px;')
+									h5(style='								<h5 style=', text-align='', center;='', padding:0px='', 0px='', 0px;margin:0px='')
+										strong Total: {{totalPrice | currency}}
+									|                                 
+									.row(style='margin-top:5px;opacity:0.54;')
+										.col-lg-6.col-xs-6(style='text-align:left;') Quantity:
+										|                                     
+										.col-lg-6.col-xs-6(style='text-align:right;') {{Quantity}}
+									|                                 
+									.row(style='opacity:0.54;')
+										.col-lg-6.col-xs-6(style='text-align:left;') Each:
+										|                                     
+										.col-lg-6.col-xs-6(style='text-align:right;') {{totalPrice / Quantity | currency}}
+								|                             
+								.col-lg-12.col-xs-12(style='margin-top:20px;padding:0px 0px 0px 0px;')
+									div(style='text-align: center;')
+										orderbutton(door-quote-id='SelectedDoorQuote.id', style-id='thisItem.Styles2Item.Styles2ID', add-clicked='AddToOrder(selected)', update-clicked='UpdateOrder()', remote-door-quote-id='SelectedDoorQuote.DoorQuoteID')
+			|                 
+			div(ng-class="{'col-xs-7' : showingSidelitePanel == false,'col-xs-12' : showingSidelitePanel == true}", style='padding:0px 10px 0px 0px;')
+				.col-lg-12.col-xs-12.panel.panel-default
+					.panel-body(data-ng-click='showSidelitePanel(true)')
+						h5.pull-left
+							| ADD A TRANSOM OR SIDELIGHT
+						|                     
+						img.pull-right(style='width: 50px', src='assets/img/sidelites/both-lite.png')
+						|                     
+						.col-lg-12.col-xs-12.pull-left(style='margin-bottom: 20px', ng-if='showingSidelitePanel == true')
+							.col-lg-2.col-xs-2(ng-click='', ng-class="{'tab-active' : selectedValues.type == 'Single','tab-off' : selectedValues.type != 'Single'}")
+								h5
+									| SIDELIGHT
+							|                         
+							.col-lg-2.col-xs-2(ng-click='', ng-class="{'tab-active' : selectedValues.type == 'Double','tab-off' : selectedValues.type != 'Double'}")
+								h5
+									| TRANSOM
+							|                         
+							.col-lg-1.col-xs-1
+							|                         
+							.col-lg-7.col-xs-7
+								.input-group
+									input.form-control(type='text', placeholder='Search...', aria-describedby='search-addon', ng-model='sideliteSearch.text', ng-click='$event.stopPropagation();')
+									|                                 
+									span#search-addon.input-group-addon(ng-click='$event.stopPropagation();')
+										span.glyphicon.glyphicon-search(aria-hidden='true')
+									|                                 {{sideliteSearch.text}}
+						|                     
+						.col-lg-12.col-xs-12(ng-if='showingSidelitePanel == true')
+							.col-lg-12.col-xs-12(ng-if='showingSidelitePanel == true')
+								.col-lg-3.col-xs-3(ng-click="changeSideliteDirection('Left',$event)", style='text-align: center', ng-class="{'orange-border' : selectedSideliteDirection == 'Left' }")
+									img(style='height: 50px', src='assets/img/sidelites/left-lite.png')
+									|                                 
+									h5.col-lg-12.col-xs-12
+										| ADD TO LEFT
+								|                             
+								.col-lg-3.col-xs-3(style='text-align: center', ng-click="changeSideliteDirection('Both',$event)", ng-class="{'orange-border':  selectedSideliteDirection == 'Both'}")
+									img(style='height: 50px', src='assets/img/sidelites/both-lite.png')
+									|                                 
+									h5.col-lg-12.col-xs-12
+										| ADD TO BOTH
+								|                             
+								.col-lg-3.col-xs-3(style='text-align: center', ng-click="changeSideliteDirection('Right',$event)", ng-class="{'orange-border':  selectedSideliteDirection == 'Right'}")
+									img(style='height: 50px', src='assets/img/sidelites/right-lite.png')
+									|                                 
+									h5.col-lg-12.col-xs-12
+										| ADD TO RIGHT
+							|                         
+							|                         
+							a(ng-click='clearFilters()', ng-if='showingSidelitePanel == true', style='z-index:100;float:right; position:relative; font-size:11px; color:#00a7fc; right:0px; top:15px;border:none;text-decoration:none; cursor:pointer;')
+								span SHOW ALL
+							|                         
+							#product-type.col-xs-3(ng-if='showingSidelitePanel == true', style='margin-top:50px;')
+								.product-new-class(data-ng-repeat='x in names')
+									.margin-bottom-5(data-ng-if='x.values.length > 1', style='color:#000000;')
+										h4.col-lg-12.col-xs-12(style='margin-bottom:0px;border-bottom:1px solid #424242;font-size:14px;text-transform:uppercase;')
+											| {{x.treeName}}
+										table.col-lg-12.col-xs-12
+											tr(ng-repeat='filter in x.values|limitTo:getFilterLimit(x.treeName)', ng-if="filter != ''")
+												td
+													.checkbox
+														label
+															input(type='checkbox', data-ng-click='FilterChange(x.treeName, filter)', id='rad-{{filter}}', name='{{x.treeName}}', ng-checked='filters[x.treeName] == filter')
+															|  
+															span(style='font-size:13px;color:#262626;') {{filter}}
+										|                                     
+										a.pull-right.col-xs-12.col-lg-12.col-xs-12(ng-click='toggleShowAll(x.treeName)', style='text-align:right;color:#00a7fc;font-size:14px;')
+											| {{showFilters[x.treeName] == true ? &apos;SHOW LESS&apos; : &apos;SHOW MORE&apos;}}
+							|                             
+							|                         
+							.col-xs-9
+								.col-xs-12
+									button.fb-btn-classic(ng-click='pageDown()')
+										i.mdi-navigation-chevron-left
+									|                                 
+									button.fb-btn-classic(ng-click='pageUp()')
+										i.mdi-navigation-chevron-right
+								|                              
+								.col-md-3.col-lg-3.col-sm-3.shadow(ng-click='addSidelites(lite,$event)', style='margin:15px;text-align: center;padding:15px;cursor:pointer', ng-repeat='lite in filtered = (availableSidelites | filter:  sideliteSearch.text | filter: filters ) | startFrom:(currentPage * pageSize) | limitTo: pageSize')
+									img.shadow(style='height: 150px', fb-img-src='{{FBConfig.UPaths.ProductImagePath + lite.photoName}}', ng-mousemove='showBigImage($event)', ng-mouseleave='hideBigImage()')
+									|                                 
+									h5(style='position:absolute;top:35%;left:25%')
+										| {{lite.width}}
+									|                                 
+									h5
+										| {{lite.name}}
+										br
+										|                                     {{lite.species}}
+										br
+										|                                     {{lite.glass}}
+			|         
+			.col-lg-12.col-xs-12(style='margin-bottom:50px;')
+				div(style='color: Black')
+					.fb-card-section-title(style='margin-bottom:10px') {{thisItem.ProductTypeItem.ProductType | uppercase}}
+					|                 
+					ordercard(orders='orderTree.products', product-item='thisItem.ProductTypeItem', reload='reloadOrders()')

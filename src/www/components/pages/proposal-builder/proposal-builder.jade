@@ -1,0 +1,51 @@
+div(style='position: fixed; width: 100%; z-index: 99;min-width:1080px;')
+	nav.navbar.header-color(style='background-color: #424242; margin-bottom: 0px')
+		.container-fluid(style='position:relative;z-index:99;')
+			i.mdi-navigation-arrow-back.pull-left.header-text-color(ng-click='goBack()', style='margin:10px;cursor:pointer;')
+		div(style='position:absolute;left:0px;right:0px;width:1024px;margin-left:auto;margin-right: auto;top:3px;padding-right:86px;z-index:1;')
+			div.myname(style='width:30%; margin-right: 15px; float:left; display: flex; height: 44px; margin-top: 10px; margin-left: -40px;') 
+				p(class="proposal-label")
+					| PROPOSAL FOR:
+				p(class="proposal-text", ng-bind="Customer.name")
+				
+			img(onerror='this.style.display = "none"', ng-src='{{CurrUser.companyImage}}', alt='', style='height:42px;float:right;margin-top:2px;z-index:100;')
+		// /.container-fluid
+div.proposal-page(style="width:100%;overflow-y:scroll;height:100%")
+	.col-lg-10.col-lg-offset-1.row.col-xs-10.col-xs-offset-1(style='width:1080px;margin-top:70px;')
+		div(vertilize-container='')
+			button.blue-button(ng-click="getSignsImg(['propacceptcustomer', 'paymentcustomer','instalagreecompany','instalagreecustomer']);")
+				| Save
+			.col-lg-12.col-xs-12(style='padding:0px 10px 0px 0px;')
+			- var rolers = [{name:"INTRODUCTION", function:"introduction",header:false},{name:"QUOTE SUMMARY",function:"quotesummary", header:true},{name:"LINE ITEM DETAILS",function:"linedetails",header:false},{name:"PROPOSAL ACCEPTANCE",function:"proposalacceptance",header:true},{name:"PAYMENT TERMS",function:"paymentterms",header:true},{name:"PAYMENT DESCRIPTION",function:"paymentdescription",header:true},{name:"Installation Agreement",function:"installationagree",header:true},{name:"Installation Warranty",function:"installationwarr",header:true},{name:"CARE AND MAINTENANCE",function:"careandmaintenance",header:true},{name:"SIDING DETAILS",function:"sidingdetails",header:true}]
+			- each roler in rolers
+				div.proposal-block-title()
+					h4.pull-left
+						| #{roler.name}					
+					.col-lg-3.col-xs-3.ps-switcher(style='')
+						.togglebutton.pull-right.togglebutton-material-blue
+							label(style='opacity:0.54;')
+								span(ng-if='!swiherpdf.#{roler.function}') Not included in pdf
+								span(ng-if='swiherpdf.#{roler.function}') Included in pdf
+								input(type='checkbox', ng-model='swiherpdf.#{roler.function}', style='margin-left:20px;', checked='')
+								span.toggle
+				div.toogle-block(ng-click="#{roler.function} = (#{roler.function}!==true)?true:false;#{roler.function+'chevron'} = (#{roler.function+'chevron'}!==1)?1:0")
+					span.glyphicon.glyphicon-chevron-up(ng-class="{rotate:#{roler.function+'chevron'} == 1}")
+				.panel.panel-default(ng-show="#{roler.function}")
+					if(roler.header === true)
+						.col-xs-12.mrg(style="font-weight:bold;")
+							.col-lg-4
+								div(ng-bind="Customer.name")
+								div(ng-bind="Customer.street")
+								div(ng-bind="Customer.FullLocation")
+							.col-lg-4
+								div(ng-bind="Customer.phone")
+								div()
+									| Quote Number:
+							.col-lg-4
+								img(onerror='this.style.display = "none"', ng-src='{{CurrUser.companyImage}}', alt='', style='height:42px;float:right;margin-top:2px;z-index:100;')
+					.panel-body
+						.col-lg-12.col-xs-12
+							#{roler.function}()
+					.col-xs-12.mrg.text-center(style="font-weight:bold;")
+						|{{companyName}} - {{Customer.name}} - Quote Number: - {{Customer.date}}
+			button.blue-button(ng-click="getSignsImg(['propacceptcustomer', 'paymentcustomer','instalagreecompany','instalagreecustomer']);")

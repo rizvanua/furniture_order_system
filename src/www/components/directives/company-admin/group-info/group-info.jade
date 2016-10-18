@@ -1,0 +1,41 @@
+.col-xs-12(style='margin:10px')
+  button(ng-click='newGroup()') NEW GROUP
+br
+.col-xs-12.groupRow(ng-repeat='group in groups', ng-click='selectedGroup = group', style="margin-top:10px;")
+  .col-xs-12(style="margin-top:10px;")
+    button(ng-click='showOnFactors(group.Group)') EDIT MARKUPS/ONFACTORS
+    button(ng-click='showModifiers(group.Group)') EDIT CUSTOMER MODIFIERS
+    button.pull-right(ng-click='editGroup(group.Group)') Edit
+  .col-xs-3
+    | Group Name:
+    br
+    strong {{group.Group.GroupName}}
+  .col-xs-3
+    | Address:
+    br
+    strong {{group.Group.Address}}
+  .col-xs-3
+    | Address 2:
+    br
+    strong {{group.Group.Address2}}
+  .col-xs-3
+    | City:
+    br
+    strong {{group.Group.City}}
+  .col-xs-3
+    | State:
+    br
+    strong {{group.Group.State}}
+  .col-xs-3
+    | Zip:
+    br
+    strong {{group.Group.Zip}}
+  .col-xs-3
+    | Phone:
+    br
+    strong {{group.Group.Phone}}
+  .col-xs-12
+    | Users 
+    button(ng-click='newUserClick(group.Group.GroupID)', style='margin-left:20px') NEW USER
+  .col-xs-12
+    button.blueBtn(ng-repeat='user in group.Users', style='margin:10px', ng-click='editUserClick(user,group.Group.GroupID)') {{user.Email}}

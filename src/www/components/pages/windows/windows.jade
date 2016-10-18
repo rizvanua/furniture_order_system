@@ -1,0 +1,461 @@
+.row(style='position:fixed;width:100%;z-index:100;min-width:1080px')
+	nav.navbar.header-color(style='margin-bottom: 0px')
+		.container-fluid
+			i.mdi-navigation-arrow-back.pull-left(onclick='window.history.back();', style='margin:10px;color:White')
+			ul.breadcrumb.pull-left(style='background-color:transparent; width:80%;margin:0px;padding:5px')
+				li
+					a(href='#/')
+						i.mdi-action-home(style='vertical-align:middle')
+				li
+					a(href='javascript:void(0)')
+						.btn-group(style='margin:0px')
+							a.btn.btn-default.dropdown-toggle(style='margin:0px;padding-left:4px;padding-right:4px;')
+								| {{thisItem.SelectedCustomer.name}}
+				li
+					a(href='javascript:void(0)')
+						.btn-group(style='margin:0px')
+							a.btn.btn-default.dropdown-toggle(data-target='#', style='margin:0px;padding-left:4px;padding-right:4px;', data-toggle='dropdown')
+								span(ng-if='thisItem.SelectedMasterQuote.ProjectName !== null')
+									| {{thisItem.SelectedMasterQuote.JobName + " " + thisItem.SelectedMasterQuote.ProjectName}}
+								span(ng-if='thisItem.SelectedMasterQuote.ProjectName === null') {{thisItem.SelectedMasterQuote.JobName}}
+								span.caret
+							ul.dropdown-menu
+								li(ng-class="{'active-quote': thisItem.SelectedMasterQuote == masterQuote}", ng-repeat="masterQuote in filtered = (thisItem.CustomerMasterQuotes | orderBy:'JobName' )")
+									a(ng-click='changeMasterQuote(masterQuote)')
+										span(ng-if='masterQuote.ProjectName !== null') {{masterQuote.JobName + " " + masterQuote.ProjectName}}
+										span(ng-if='masterQuote.ProjectName === null') {{masterQuote.JobName}}
+				li
+					a(href='javascript:void(0)')
+						.btn-group(style='margin:0px')
+							a.btn.btn-default.dropdown-toggle(data-target='#', style='margin:0px;padding-left:4px;padding-right:4px;', data-toggle='dropdown')
+								| {{thisItem.ProductTypeItem.ProductType}}
+								span.caret
+							ul.dropdown-menu
+								li(ng-repeat='item in thisItem.ProductTypes')
+									a(ng-click='getStyles2(item)', href='javascript:void(0)') {{item.ProductType}}
+		// /.container-fluid
+div(style='width:100%; min-width:1024px')
+	.col-xs-12(style='margin-top:55px;padding-right:5px;padding-left:5px')
+		.col-xs-2(style='padding:5px')
+			.panel(style='height:150px;margin-bottom:0px')
+				.panel-body(style='padding:3px')
+					.col-lg-12.col-xs-12(style='padding:0px 3px 0px 3px;')
+						qtyfield(quantity='Quantity')
+					.col-lg-12.col-xs-12(style='padding:0px 3px 0px 3px;')
+						h6(style='')
+							| WIDTH x HEIGHT
+						input#numpad_value.numpad_val.form-control(type='tel')
+		.col-xs-10(style='padding:5px;padding-right:0px;height:160px')
+			.panel(style='height:150px')
+				.panel-body(style='padding-top:0px;padding-bottom:0px')
+					.row
+						div(ng-repeat='type in windowTypes', ng-click='ChangeWindowType(type)', style='width: 11%;\
+						float: left; text-align: center', ng-class="{'tab-active' : selectedType == type,'tab-off' : selectedType != type}")
+							h5
+								| {{type | uppercase}}
+					.pull-left(ng-click='addWindow(selectedType,subtype)', ng-repeat='subtype in subTypes[selectedType]', style='text-align: center; width: 100px;margin-right:15px')
+						.pull-left(style="width:100px;height:75px;")
+							img(style="width:100px;height:75px;", fb-img-src="{{FBConfig.UPaths.WindowIconPath}}{{selectedType}}/{{subtype}}.png")
+						h5(style='text-align:center')
+							| {{subtype | uppercase}}
+	.col-lg-10.col-xs-10(style='padding:5px')
+		.col-lg-6.col-xs-6(style='padding-left:5px;padding-right:10px')
+			.panel(style='background-image: url(assets/img/canvas-grid.png);\
+			background-repeat: no-repeat; background-size: cover;position:relative')
+				.panel-heading(style='padding:0px')
+					.btn-group(style='margin:0px;padding:0px', title='Set temper for current window')
+						a.btn.btn-default.dropdown-toggle.ellipses(data-target='#', style='margin:0px;padding:8px 8px;color:Black;width:84px;font-size:10px', data-toggle='dropdown')
+							| {{getTemperValue() | uppercase}}
+							span.caret
+						ul.dropdown-menu
+							li
+								a(ng-click="setTemper('All')") TEMP-ALL
+							li
+								a(ng-click="setTemper('Tempered Top')") TEMP-TOP
+							li
+								a(ng-click="setTemper('Tempered Bottom')") TEMP-BOT
+							li
+								a(ng-click="setTemper('Tempered Left')") TEMP-LEFT
+							li
+								a(ng-click="setTemper('Tempered Right')") TEMP-RIGHT
+							li
+								a(ng-click="setTemper('None')") NONE
+					.btn-group(style='margin:0px', title='Set obscure for current window')
+						a.btn.btn-default.dropdown-toggle.ellipses(data-target='#', style='margin:0px;padding:8px 8px;color:Black;width:84px;font-size:10px', data-toggle='dropdown')
+							span#obs-btn-txt {{getObscureValue() | uppercase}}
+							span.caret
+						ul.dropdown-menu
+							li(ng-repeat='(key,obs) in obscures', ng-click='setObscure(key)')
+								a {{obs.name}}
+					.btn-group(style='margin:0px;', title='Set grid for current window')
+						a.btn.btn-default.dropdown-toggle.ellipses(data-target='#', style='padding:8px 8px;margin:0px;color:Black;width:84px;font-size:10px', data-toggle='dropdown')
+							| {{getGridValue() | uppercase}}
+							span.caret
+						ul.dropdown-menu
+							li
+								a(ng-click="toggleGridPattern('full')") COLONIAL
+							li
+								a(ng-click="toggleGridPattern('top down')") TOP DOWN
+							li
+								a(ng-click="toggleGridPattern('perimeter')") PERIMETER
+							li
+								a(ng-click="toggleGridPattern('none')") NONE
+					a#fav.btn.ellipses(title='Toggle ventilator for current window', onclick="setOption(this,'fav')", data-target='#', style='width:84px;margin:0px;padding:8px 8px;color:Black;font-size:10px')
+						| Ventilator
+					.btn-group(style='margin:0px;', title='Set location for current window')
+						a.btn.btn-default.dropdown-toggle.ellipses(data-target='#', style='width:84px;margin:0px;padding:8px 8px;color:Black;font-size:10px', data-toggle='dropdown')
+							| {{getLocationValue() | uppercase}}
+							span.caret
+						ul.dropdown-menu
+							li(ng-repeat='loc in locations')
+								a(ng-click='setLocation(loc)') {{loc}}
+							li(style='margin-right:5px')
+								input.form-control(placeholder='Custom Location', onchange='customLoc(this)', style='margin:3px', ng-click='$event.stopPropagation()')
+				.panel-body(style='padding-top: 0px;  height: 580px')
+					.col-xs-12
+						button.blueBtn.col-xs-5(ng-click='backLine()', style='margin-right:5px;margin-top:5px') PREVIOUS LINE
+						button.blueBtn.col-xs-5(ng-click='nextLine()', style='margin-right:5px;margin-top:5px') NEXT LINE
+						button.blueBtn.col-xs-1(ng-click='goToLastLine()', style='margin-right:5px;margin-top:5px') >>
+					button.blueBtn(ng-if='editGrid === true && (getSelectedWindow().subtype.toLowerCase() == "single hung" || getSelectedWindow().subtype.toLowerCase() == "xox")',onclick='setHalfGrid()',style='position:absolute;top:62%;left:6%;z-index:300' )
+						| Half Grid
+					#grid-col-panel.canvas_head.edit-grid-top.pull-left(ng-if='editGrid == true', style='width: 70%;position:absolute;top:85px;left:27px;z-index:200') 
+						button#col_1.blueBtn.col-xs-2(onclick='changeCol(1,this)')
+							| 1
+						button#col_2.blueBtn.col-xs-2(onclick='changeCol(2,this)')
+							| 2
+						button#col_3.blueBtn.col-xs-2(onclick='changeCol(3,this)')
+							| 3
+						button#col_4.blueBtn.col-xs-2(onclick='changeCol(4,this)')
+							| 4
+						button#col_5.blueBtn.col-xs-2(onclick='changeCol(5,this)')
+							| 5
+						button#col_6.blueBtn.col-xs-2(onclick='changeCol(6,this)')
+							| 6
+						button#col_7.blueBtn.col-xs-2(onclick='changeCol(7,this)')
+							| 7
+						button#col_8.blueBtn.col-xs-2(onclick='changeCol(8,this)')
+							| 8
+						button#col_9.blueBtn.col-xs-2(onclick='changeCol(9,this)')
+							| 9
+						button#col_10.blueBtn.col-xs-2(onclick='changeCol(10,this)')
+							| 10
+						button#col_11.blueBtn.col-xs-2(onclick='changeCol(11,this)')
+							| 11
+						button#col_12.blueBtn.col-xs-2(onclick='changeCol(12,this)')
+							| 12
+					#grid-row-panel.edit-grid-row-panel.pull-right(ng-if='editGrid == true', style='position: absolute;\
+					left: 85%; margin-top: 70px;;z-index:200')
+						button#row_1.blueBtn(style='margin: 3px;width:40px', onclick='changeRow(1,this)')
+							| 1
+						button#row_2.blueBtn(style='margin: 3px;width:40px', onclick='changeRow(2,this)')
+							| 2
+						button#row_3.blueBtn(style='margin: 3px;width:40px', onclick='changeRow(3,this)')
+							| 3
+						button#row_4.blueBtn(style='margin: 3px;width:40px', onclick='changeRow(4,this)')
+							| 4
+						button#row_5.blueBtn(style='margin: 3px;width:40px', onclick='changeRow(5,this)')
+							| 5
+						button#row_6.blueBtn(style='margin: 3px;width:40px', onclick='changeRow(6,this)')
+							| 6
+						button#row_7.blueBtn(style='margin: 3px;width:40px', onclick='changeRow(7,this)')
+							| 7
+						button#row_8.blueBtn(style='margin: 3px;width:40px', onclick='changeRow(8,this)')
+							| 8
+					#canvas.canvas-main(style='position:relative;height:70%')
+					#leg-panel(style='position: absolute;top:70%;left6%')
+						p(style='color:white')
+							| Leg dimension
+						input#leg-txt.form-control(onchange='setLegDims(this)',style='border:1px solid white;color:white')
+					div(id='', ng-show="editGrid == true && getSelectedWindow().gridPattern == 'top down'", style='position: absolute; top: 75%; left: 6%')
+						p(style='color: White')
+							| Top down height
+						input#top-down-txt.form-control(style='border:1px solid white;color:white', onchange='setTopDown(this)')
+					.col-xs-12(style='margin-top:40px')
+						button.blueBtn.col-xs-5.col-xs-offset-1(onclick='showNotesModal()', style='margin-right:5px')
+							| ADD NOTE
+						button.blueBtn.col-xs-5(ng-click='editGrid = !editGrid', style='margin-right:5px')
+							| EDIT GRID
+						button.blueBtn.col-xs-5.col-xs-offset-1(onclick='removeWindow()', style='margin-right:5px;margin-top:5px')
+							| REMOVE HIGHLIGHTED WINDOW
+						button.blueBtn.col-xs-5(onclick='showTDL()', style='margin-right:5px;margin-top:5px')
+							| ADD SDL
+					#tdl-panel.shadow.edit-tdl-panel(style='background-size: 100% 100%; width: 200px; position: absolute;left: 5%; border: 1px solid black; border-radius: 10px; background-color: white;padding: 20px;z-index:100')
+						i.mdi-content-clear.pull-right.header-text-color(onclick='closeSDL()', style='cursor:pointer;')
+						table(style='width: 45%')
+							tr
+								td(colspan='2', style='color: Black')
+									| Inches from top or left
+							tr
+								td(colspan='2')
+									input#tdlDim(style='float: left; margin-top: 10px')
+							tr
+								td
+									input#vertical(onclick='changeTdl(1)', type='radio', name='tdlDir', value='horizontal')
+								td
+									label(for='vertical', style='color: Black')
+									| Vertical
+							tr
+								td
+									input#horizontal(type='radio', onclick='changeTdl(2)', name='tdlDir', value='vertical')
+								td
+									label(for='horizontal', style='color: Black')
+									| Horizontal
+						#tdl-bar-panel
+							div(style='color: Black; font-size: x-large; padding: 10px; border: 1px solid Black')
+								| 20' vertical
+								img(style='float: right', src='/Images/UI_Images/black_x_btn.png')
+						button.btn.btn-default(style='width: 100%; font-size: 1.3em', onclick='addTdl()')
+							| Add/Remove SDL
+		.panel.col-lg-6.col-xs-6(style='padding:0px')
+			.panel-heading(style='padding:0px')
+				.btn-group(style='margin:0px;padding:0px', title='Change Opening')
+					a.btn.btn-default.dropdown-toggle.ellipses(data-target='#', style='width:84px;margin:0px;padding:8px 8px;color:Black;font-size:10px', data-toggle='dropdown')
+						| {{getOpeningValue() | uppercase}}
+						span.caret
+					ul.dropdown-menu
+						li
+							a(ng-click="changeGlobalOpening('Rough Opening')") ROUGH OPENING
+						li
+							a(ng-click="changeGlobalOpening('Net')") NET OPENING
+				.btn-group(style='margin:0px', title='Change global grid type')
+					a.btn.btn-default.dropdown-toggle.ellipses(data-target='#', style='width:84px;margin:0px;padding:8px 8px;color:Black;font-size:10px', data-toggle='dropdown')
+						| {{getGridTypeValue()|uppercase}}
+						span.caret
+					ul.dropdown-menu
+						li(ng-repeat="(key,value) in productLineConfig.gridLabels")
+							a(ng-click="changeGridType(key)") {{value}}
+				.btn-group(style='margin:0px;', title='Change global grid pattern')
+					a.btn.btn-default.dropdown-toggle.ellipses(data-target='#', style='width:84px;margin:0px;padding:8px 8px;color:Black;font-size:10px', data-toggle='dropdown')
+						| {{getGlobalGridPattern() | uppercase}}
+						span.caret
+					ul.dropdown-menu
+						li
+							a(ng-click="changeGlobalGridPattern('colonial')") COLONIAL
+						li
+							a(ng-click="changeGlobalGridPattern('top down')") TOP DOWN
+						li
+							a(ng-click="changeGlobalGridPattern('perimeter')") PERIMETER
+						li
+							a(ng-click="changeGlobalGridPattern('none')") NONE
+				.btn-group(style='margin:0px;', title='Change global frame type')
+					a.btn.btn-default.dropdown-toggle.ellipses(data-target='#', style='width:84px;margin:0px;padding:8px 8px;color:Black;font-size:10px', data-toggle='dropdown')
+						| {{getGlobalFrame()|uppercase}}
+						span.caret
+					ul.dropdown-menu
+						li
+							a(ng-click="setFrameType('fin_1')") NAIL FIN
+						li
+							a(ng-click="setFrameType('fin_2')") FLUSH FIN
+				.btn-group(style='margin:0px;', title='Change screens')
+					a.btn.btn-default.dropdown-toggle.ellipses(data-target='#', style='width:84px;margin:0px;padding:8px 8px;color:Black;font-size:10px', data-toggle='dropdown')
+						| SCREEN
+						span.caret
+					ul.dropdown-menu
+						li
+							a(ng-click="setScreen('Attached')") ATTACHED
+						li
+							a(ng-click="setScreen('Deferred')") DEFERRED
+			.panel-body(style='height:580px;overflow:auto')
+				.blueBorder.pull-left(style='padding:5px;width:30%;margin-left:2%;text-align:center;color:#00a7fc', onclick='showLineAddModal()') LINE ITEM ADD
+				.blueBorder.pull-left(style='padding:5px;width:30%;margin-left:2%;text-align:center;color:#00a7fc')
+					.btn-group(style='margin:0px')
+						a.dropdown-toggle(data-target='#', style='margin:0px;color:#00a7fc;padding-left:4px;padding-right:4px;', data-toggle='dropdown')
+							| VENDOR PRICES
+							span.caret
+						ul.dropdown-menu
+							li
+								a(ng-click='toggleVendorPricing(false)') OFF
+							li(ng-class="{'active-quote': thisItem.SelectedMasterQuote == masterQuote}", ng-repeat='order in orderList')
+								a(ng-click='changeSelectedOrder(order.manufacturer, order.productLine, true)') {{order.manufacturer + " " +  order.productLine}}
+				.blueBorder.pull-left(style='padding:5px;width:30%;margin-left:2%;text-align:center;color:#00a7fc')
+					.btn-group(style='margin:0px')
+						a.dropdown-toggle(data-target='#', style='margin:0px;color:#00a7fc;padding-left:4px;padding-right:4px;', data-toggle='dropdown')
+							| TOGGLE PRICING
+							span.caret
+						ul.dropdown-menu
+							li
+								a(ng-click='togglePricing(false)') OFF
+							li(ng-class="{'active-quote': thisItem.SelectedMasterQuote == masterQuote}", ng-repeat='order in orderList')
+								a(ng-click='changeSelectedOrder(order.manufacturer, order.productLine)') {{order.manufacturer + " " +  order.productLine}}
+				#summary_list(style='overflow: auto; float: left; min-height: 350px;')
+	.col-xs-2(style='padding:5px')
+		.panel
+			.panel-body(style='padding: 5px 5px 5px 5px')
+				h5.col-xs-12(style='text-align:center') MANUFACTURERS
+				button.col-xs-12.blueBtn(ng-click='buildMfPanel()', style='margin-bottom:10px') ADD / EDIT BRANDS
+				#summary_mf_column
+#brand-panel.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+	.modal-dialog.modal-lg
+		.modal-content
+			.modal-header
+				h4.modal-title Manufacturer Settings
+			.modal-body(style='text-align: center; padding:0px')
+				div(style='height:500px')
+					div(ng-repeat='mf in mfInfo', ng-click='changeMfIndex($index)', style='width: 11%;\
+					float: left; text-align: center;height:60px', ng-class="{'tab-active' : $index == mfIndex,'tab-off' : $index != mfIndex}")
+						h5
+							img.summaryMfImg(style='width:90%;margin-left:5%;margin-bottom:10px', fb-img-src='{{FBConfig.UPaths.ManufacturerImagePath}}{{mf.manufacturer}}.png')
+					div(style='padding: 20px')
+						.allLinesPanel(style='width: 100%;float:left')
+							.optLinesPanel(style='width: 30%; color: Black')
+								.newCheckPanel(style='margin-top: 10px;')
+									div(style='width: 70%; float: left; font-size: larger')
+										| Montecito
+									input(style='float: right', type='checkbox')
+								.optPanelShader
+								.optControlHeader
+									h4(style='margin-bottom: 5px;')
+										| Frame Color
+									button.optColorBtn
+										| White
+								.optControlHeader
+									h4(style='margin-bottom: 5px;')
+										| Exterior Paint
+									button.optColorBtn
+										| None
+								.optControlHeader
+									h4(style='margin-bottom: 5px;')
+										| Glass Type
+									select.optPanelSelect
+										option Suncoat
+								div(style='margin-top: 0px; margin-left: 10px; float: left; width: 90%')
+									h4(style='margin-bottom: 5px;')
+										| Glass Type
+									.checkPanel
+										div(style='width: 70%; float: left; font-size: larger')
+											| Montecito
+										input(style='float: right', type='checkbox')
+									.checkPanel
+										div(style='width: 70%; float: left; font-size: larger')
+											| Montecito
+										input(style='float: right', type='checkbox')
+			.modal-footer
+				button.btn.btn-primary(type='button', data-dismiss='modal')
+					| DONE
+// ====================================================== Doors ====================================
+#door-panel.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myLargeModalLabel', aria-hidden='true')
+	.modal-dialog.modal-lg
+		.modal-content
+			.modal-header
+				h1#doorHeaderTxt
+					| Patio Door Sizes
+			.modal-body
+				#transom-panel.black-border(style='float: right;')
+					h1(style='color: Black; float: left; margin: 15px;')
+						| Transoms
+					.pull-right
+						button#0.btn(onclick='selectTransom(this)', style='background-color: White;\
+						border: 1px solid #00a7fc; border-radius: 5px; font-size: large; color: #00a7fc')
+							| None
+						button#12.btn(onclick='selectTransom(this)', style='background-color: White;\
+						border: 1px solid #00a7fc; border-radius: 5px; font-size: large; color: #00a7fc')
+							| 12
+						button#14.btn(onclick='selectTransom(this)', style='background-color: White;\
+						border: 1px solid #00a7fc; border-radius: 5px; font-size: large; color: #00a7fc')
+							| 14
+						button#16.btn(onclick='selectTransom(this)', style='background-color: White;\
+						border: 1px solid #00a7fc; border-radius: 5px; font-size: large; color: #00a7fc')
+							| 16
+						button#24.btn(onclick='selectTransom(this)', style='background-color: White;\
+						border: 1px solid #00a7fc; border-radius: 5px; font-size: large; color: #00a7fc')
+							| 24
+						button#30.btn(onclick='selectTransom(this)', style='background-color: White;\
+						border: 1px solid #00a7fc; border-radius: 5px; font-size: large; color: #00a7fc')
+							| 30
+						input.form-control(style='border: 1px solid black; margin-top: 5px', placeholder='Custom size')
+				.doorPanel
+			.modal-footer
+// ====================================================== Brand Panel =======================================================
+#brand-panel.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myLargeModalLabel', aria-hidden='true')
+	.modal-dialog.modal-md
+		.modal-content
+			div(style='width: 600px; height: 610px; border: 1px solid black; border-radius: 10px;\
+			background-color: white; padding: 20px; z-index: 200')
+				img(style='position: absolute; left: 95%', fb-img-src='{{FBConfig.UPaths.UIImagePath}}black_x_btn.png', onclick="$('#brand-panel').modal('hide')")
+				.optHeaderPanel(style='width: 100%; height: 110px')
+					#opt_btn_last(style='z-index: -1; float: left; margin: 00px 30px 0px 50px', onclick='showNextMf()')
+						button.btn.btn-default
+							| More
+							i.fa.fa-caret-left
+					.optMfLogo(style='float: left; height: 100%; margin: 0px 10px 10px 10px')
+					#opt_btn_next(style='z-index: -1; float: left; margin: 0px 30px 0px 30px', onclick='showPreviousMf()')
+						img(style='height: 50%;', fb-img-src='{{FBConfig.UPaths.UIImagePath}}orangeArrowRight.png')
+				.allLinesPanel(style='width: 100%')
+					.optLinesPanel(style='width: 30%; color: Black')
+						.newCheckPanel(style='margin-top: 10px;')
+							div(style='width: 70%; float: left; font-size: larger')
+								| Montecito
+							input(style='float: right', type='checkbox')
+						.optPanelShader
+						.optControlHeader
+							h4(style='margin-bottom: 5px;')
+								| Frame Color
+							button.optColorBtn
+								| White
+						.optControlHeader
+							h4(style='margin-bottom: 5px;')
+								| Exterior Paint
+							button.optColorBtn
+								| White
+						.optControlHeader
+							h4(style='margin-bottom: 5px;')
+								| Glass Type
+							select.optPanelSelect
+								option Suncoat
+						div(style='margin-top: 0px; margin-left: 10px; float: left; width: 90%')
+							h4(style='margin-bottom: 5px;')
+								| Glass Type
+							.checkPanel
+								div(style='width: 70%; float: left; font-size: larger')
+									| Montecito
+								input(style='float: right', type='checkbox')
+							.checkPanel
+								div(style='width: 70%; float: left; font-size: larger')
+									| Montecito
+								input(style='float: right', type='checkbox')
+// ================== EULA ============
+#eula-panel.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myLargeModalLabel', aria-hidden='true')
+	.modal-dialog
+		.modal-content
+			.modal-header
+				h1
+					| Terms of Use
+			.modal-body
+				#eula-main(style='height: 400px; overflow: auto')
+			.modal-footer
+				button#eula-ok-btn.btn.btn-primary(onclick='agreeToEula()', type='button')
+					| I agree to these terms
+// ================================================================ Color Modal ===========================================================
+#colorModal.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+	.modal-dialog.modal-sm
+		.modal-content
+			#color-list.modal-body(style='text-align: center')
+// ========================================LINE ADD MODAL =========================================
+#line-modal.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+	.modal-dialog.modal-md
+		.modal-content
+			.modal-header
+				button#modal-x.close(type='button', data-dismiss='modal', aria-label='Close')
+					span(aria-hidden='true') ×
+				h4#myModalLabel.line-modal-title
+					| User Login
+			#line-modal-body.line-modal-body(style='text-align: center;padding:20px')
+			.modal-footer
+				button#line-modal-close.btn.btn-default(type='button', data-dismiss='modal')
+					| Close
+				button#line-modal-ok-btn.btn.btn-primary(type='button')
+					| Okay
+#myModal.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+	.modal-dialog.modal-md
+		.modal-content
+			.modal-header
+				button#modal-x.close(type='button', data-dismiss='modal', aria-label='Close')
+					span(aria-hidden='true') ×
+				h4#myModalLabel.line-modal-title
+					| User Login
+			#my-modal-body.line-modal-body(style='text-align: center;padding:20px')
+			.modal-footer
+				button#line-modal-close.btn.btn-default(type='button', data-dismiss='modal')
+					| Close
+				button#modal-ok-btn.btn.btn-primary(type='button')
+					| Okay

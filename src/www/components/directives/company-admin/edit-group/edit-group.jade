@@ -1,0 +1,37 @@
+h3(ng-if='!group.GroupID') Create Group
+h3(ng-if='group.GroupID') Edit Group
+.col-xs-6
+  .form-group
+    label(for='groupName') Name
+    input#groupName.form-control(ng-model='group.GroupName', type='text', placeholder='Name')
+.col-xs-6
+  .form-group
+    label(for='groupAddress') Address
+    input#groupAddress.form-control(ng-model='group.Address', type='text', placeholder='Address')
+.col-xs-6
+  .form-group
+    label(for='groupAddress2') Address 2
+    input#groupAddress2.form-control(ng-model='group.Address2', type='text', placeholder='Address 2')
+.col-xs-6
+  .form-group
+    label(for='groupCity') City
+    input#groupCity.form-control(ng-model='group.City', type='text', placeholder='City')
+.col-xs-6
+  .form-group
+    label(for='groupState') State
+    input#groupState.form-control(ng-model='group.State', type='text', placeholder='State')
+.col-xs-6
+  .form-group
+    label(for='groupZip') Zip
+    input#groupZip.form-control(ng-model='group.Zip', type='text', placeholder='Zip code')
+.col-xs-6
+  .form-group
+    label(for='groupERP') ERP ID
+    input#groupERP.form-control(ng-model='group.ERPNumber', type='text', placeholder='ERP ID')
+.col-xs-6
+  .form-group
+    label(for='groupPhone') Phone
+    input#groupPhone.form-control(type='text', ng-model='group.Phone', placeholder='Phone')
+  button.blueBtn(style='font-size:x-large;margin-right:10px;', ng-click='createGroup()') Save
+  button.blueBtn(style='font-size:x-large;margin-right:10px;', ng-click='delete()') Delete
+  button.blueBtn(style='font-size:x-large', ng-click='close()') Cancel

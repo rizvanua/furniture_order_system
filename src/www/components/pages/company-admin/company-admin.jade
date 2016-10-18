@@ -1,0 +1,62 @@
+.container(style='padding: 0px; width: 100%')
+	// Push Wrapper
+	#mp-pusher.mp-pusher
+		// mp-menu
+		nav#mp-menu.mp-menu
+			.mp-level
+				ul(style='height:100%')
+					li(style="padding:20px;height:160px;background-image:url('assets/img/menu_background.png');background-size:contain;position:relative;")
+						div(style='position:absolute;top:10px;right:10px;')
+							div(style='color:white;font-size:16px;cursor:pointer;', ng-click='logOut()') LOG OUT
+					li.burger-tab
+						a(ui-sref="frontpage")
+							i.mdi-image-timer.burger-icon
+							| Current Project
+					li.burger-tab
+						a(ui-sref="customers")
+							i.mdi-social-group.burger-icon
+							| Manage Customers
+					li.burger-tab
+						a(href="" ng-click="showOfflineModal();sidemenu._resetMenu();")
+							i.mdi-file-cloud.burger-icon
+							| Manage Offline Mode
+					li.burger-tab
+						a(href="https://fasterbids.zendesk.com/hc/en-us")
+							i.mdi-action-help.burger-icon
+							| Help Center
+		// /mp-menu
+		#mp-body.scroller
+			// this is for emulating position fixed of the nav
+			.scroller-inner
+				nav.navbar.header-color(style='margin-bottom: 0px')
+					.container-fluid(style='position:relative;z-index:99;')
+						// Brand and toggle get grouped for better mobile display
+						.navbar-header
+							i#trigger.mdi-navigation-menu.pull-left(style='margin-top:7px;font-size:30px;margin-left:15px')
+						ul.breadcrumb.pull-left(style='background-color:transparent; width:80%;margin:0px;padding:5px')
+							li
+								a(href='javascript:void(0)')
+									div(style='margin:0px')
+										a.btn.btn-default.header-text-color(data-target='#', style='margin:0px;padding-left:4px;padding-right:4px;')
+											| {{SelectedCustomer.name}}
+										ul.dropdown-menu
+						// /.navbar-collapse
+					// /.container-fluid
+					div(style='position:absolute;left:0px;right:0px;width:1024px;margin-left:auto;margin-right: auto;top:5px;padding-right:86px;z-index:1;')
+						img(fb-img-src='{{CurrUser.companyImagePath}}', alt='', style='height:42px;float:right;margin-top:0px;z-index:100;')
+				div(style='width:70%;margin-left:15%; border:2px solid #00a7fc;border-radius:3px;float:left;background-color:white;padding-bottom:100px')
+					div(style='width:100%;background-color:#00a7fc;padding:3%;float:left;')
+						a(href='/website/materialtest')
+						img.logo(width='207', src="{{companyImgPath + company.CompanyID + '.png'}}", style='float:left')
+						h1(style='text-align:right;float:right;margin:0px;color:white') Company Admin
+					div(style='width:100%;margin:10px;float:left')
+						.col-xs-12
+							.col-xs-2(style='padding:12px', ng-class="{'blueBtn': selectedTab === 1}", ng-click='selectedTab = 1') Company
+							.col-xs-2(style='padding:12px', ng-class="{'blueBtn': selectedTab === 2}", ng-click='selectedTab = 2') Groups
+							.col-xs-12(style="padding-top:20px;")
+								create-group(on-delete='removeGroup()', group='selectedGroup', ng-show='selectedTab == 2 && showNewGroup', on-close='closeEditGroup()', new-group='newGroup()')
+								create-user(on-delete='removeUser()', group-id='selectedGroupId', groups='groups', ng-show='selectedTab == 2 && showNewUser', user='selectedUser', on-close='closeEditUser()', new-user='newUser(groupID)')
+								company-info(company='company', ng-show='selectedTab == 1', on-update='editCompanyInfo()')
+								group-info(groups='groups', ng-show='selectedTab == 2 && !showNewGroup && !showNewUser', edit-clicked='editGroup(group)', create-clicked='createGroup()', show-settings='showSettings(groupId,type)', edit-user='editUser(user,groupId)', create-user='createUser(groupId)')
+pricing-settings(group-id='selectedGroupId', products='products', company-id="company.CompanyID")
+modifier-settings(group-id='selectedGroupId', products='products', company-id="company.CompanyID")

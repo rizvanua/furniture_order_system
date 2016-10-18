@@ -1,0 +1,23 @@
+div()
+	br
+	div.fb-company-actions()
+		button.blueBtn(style='font-size:12px;', ng-click="runFullExport();") Run Full Export
+	br
+	div(style="margin-bottom:30px;margin-top:20px;padding:0px 100px 0px 20px;")
+		input.form-control(type='text', placeholder='Search', style='border: none !important; height:34px; width:100%;', ng-model='searchInfo.fbSearchText')
+	.panel.panel-default.fb-card-body(ng-repeat='company in companies | filter : searchInfo.fbSearchText', 
+	style='margin-left: 0px; margin-right: 0px; margin-top: 30px; box-shadow: none;')
+		.row.vertical-align(style='padding:20px 10px 20px 10px; margin:20px 0px 20px 0px;background-color:#EEEEEE;')
+			.col-lg-3.col-xs-3.col-xs-3(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;height:100%;')
+				div(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;')
+					img(src="{{companyImgPath + company.CompanyID + '.png'}}", style="height:50px;")
+			.col-lg-2.col-xs-2.col-xs-2(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;height:100%;')
+				div(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;') {{company.name}}
+			.col-lg-2.col-xs-2.col-xs-2(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;height:100%;')
+				div(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;') {{company.phone}}
+			.col-lg-3.col-xs-3.col-xs-3(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;')
+				div(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;') {{company.address1}} {{company.address2}}
+			.col-lg-2.col-xs-1.col-xs-1(style='padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;height:100%;')
+				button.blueBtn(style='font-size:12px;margin-right:20px;', ui-sref="superadmin.datapermissions({CompanyID : company.CompanyID})") Data Permissions
+				button.blueBtn(style='font-size:12px;') Edit
+									

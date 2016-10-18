@@ -1,0 +1,80 @@
+- var inputs=[]
+- inputs.push({label:"Tear Off ", mfg:"", style:"", name:"", linft:"",checkbox:true,radioname:"tearoff", valueOne:"Yes", valueTwo:"No"})
+- inputs.push({label:"Siding Body", mfg:"", style:"", name:"", linft:"",checkbox:false})
+- inputs.push({label:"Window Trim", mfg:"", style:"", name:"", linft:"",checkbox:false})
+- inputs.push({label:"Outside Corner", mfg:"", style:"", name:"", linft:"",checkbox:false})
+- inputs.push({label:"Soffit", mfg:"", style:"", name:"", linft:"",checkbox:false})
+- inputs.push({label:"Fascia", mfg:"", style:"", name:"", linft:"",checkbox:false})
+- inputs.push({label:"Blocks", mfg:"", style:"", name:"", linft:"",checkbox:true, radioname:"blocks", valueOne:"Cedar", valueTwo:"Other"})
+- inputs.push({label:"Foundation Vents", mfg:"", style:"", name:"", linft:"",checkbox:false})
+- inputs.push({label:"Gable Vents", mfg:"", style:"", name:"", linft:"",checkbox:false})
+form
+	div.form-group
+			| Project Overview	
+		textarea.form-control.col-xs-12(style='min-height: 102px;', placeholder='Enter details here')
+	- each input in inputs
+		-if(input.checkbox===false)
+			.form-group.col-xs-12
+					label()
+						| #{input.label}
+					input.form-control(type="text", value="#{input.label}-#{input.mfg}-#{input.style}-#{input.name}-#{input.linft}", readonly)
+		-else
+			div.col-md-5.radio.zerro-right.sixty-height
+					label.control-label.col-md-9.zerro-left.zerro-right.lable-margin-top.ps-bold
+						| #{input.label}					
+						label.radio-inline.intend()
+							| #{input.valueOne}
+							input(type="radio", name="#{input.radioname}", value="#{input.valueOne}")
+							span.circle
+							span.check
+						label.radio-inline()
+							| #{input.valueTwo}
+							input(type="radio", name="#{input.radioname}", value="#{input.valueTwo}")
+							span.circle
+							span.check
+	
+	.form-group.col-md-3.zerro-bottom.sixty-height
+		label.control-label.col-md-3.zerro-left.zerro-right.lable-margin-top
+			| Painting
+		div.radio.col-md-9.zerro-bottom.zerro-right
+			label()
+				| Yes
+				input(type="radio", name="painting", value="yes", checked)
+				span.circle
+				span.check
+			label()
+				| No
+				input(type="radio", name="painting", value="no")
+				span.circle
+				span.check
+	div.col-md-9.sixty-height
+				input.form-control(type="text")
+	.form-group.col-md-3
+		label.control-label.col-md-3.zerro-left.zerro-right.lable-margin-top
+			| Gutters
+		div.radio.col-md-9.zerro-right
+			label()
+				| Yes
+				input(type="radio", name="gutters", value="yes", checked)
+				span.circle
+				span.check
+			label()
+				| No
+				input(type="radio", name="gutters", value="no")
+				span.circle
+				span.check
+	div.col-md-3
+			label.form-inline
+				p.sd-label.col-md-3
+					| Linft
+				input.form-control(type="text")
+	div.col-md-3
+			label.form-inline
+				p.sd-label.col-md-3
+					| Color
+				input.form-control(type="text")
+	div.col-md-3
+			label.form-inline
+				p.sd-label.col-md-3
+					| Down
+				input.form-control(type="text")

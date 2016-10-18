@@ -1,0 +1,36 @@
+- var tables = []
+- tables.push({title:"Windows", check:"calculate.totalWindows", amount:"calculate.totalWindows | currency", productid:"1", names:['Manufacturer','Series','Material','Interior Finish','Exterior Finish','Hardware Type','Hardware Finish'], properties:['orderDetail.Distributor','orderDetail.productType','orderDetail.Material','orderDetail.JambPrice','orderDetail.HingeType','orderDetail.productType','orderDetail.TotalPrice  | currency']})
+- tables.push({title:"Doors",check:"calculate.totalDoors", amount:"calculate.totalDoors | currency", productid:"6", names:['Manufacturer','Series','Material','Interior Finish','Exterior Finish','Hardware Type','Hardware Finish'], properties:['orderDetail.Distributor','orderDetail.productType','orderDetail.Material','orderDetail.JambPrice','orderDetail.HingeType','orderDetail.productType','orderDetail.TotalPrice']})
+- tables.push({title:"Moulding",check:"calculate.totalMoulding", amount:"calculate.totalMoulding | currency", productid:"2", names:['Manufacturer','Distributor','Collection','Species','Finish',' ',' '], properties:['orderDetail.Distributor','orderDetail.Distributor','orderDetail.Collection','orderDetail.Species','orderDetail.Finish',' ',' ']})
+- tables.push({title:"Siding",check:"calculate.totalSiding", amount:"calculate.totalSiding | currency", productid:"3", names:['Manufacturer','Distributor','Color',' ',' ',' ',' '], properties:['orderDetail.Distributor','orderDetail.Distributor','orderDetail.Color',' ',' ',' ',' ']})
+- tables.push({title:"Decking",check:"calculate.totalDecking", amount:"calculate.totalDecking | currency", productid:"4", names:['Manufacturer','Distributor','Collection','Color',' ',' ',' '], properties:['orderDetail.Distributor','orderDetail.Distributor','orderDetail.Collection','orderDetail.Color',' ',' ',' ']})
+- tables.push({title:"Skylights",check:"calculate.totalSkylights", amount:"calculate.totalSkylights | currency", productid:"7", names:['Manufacturer','Distributor','Color',' ',' ',' ',' '], properties:['orderDetail.Distributor','orderDetail.Distributor','orderDetail.Color',' ',' ',' ',' ']})
+- tables.push({title:"Raw Glass",check:"calculate.totalRawGlass", amount:"calculate.totalRawGlass | currency", productid:"8", names:['Manufacturer','Collection','Glass Type One',' ',' ',' ',' '], properties:['orderDetail.Distributor','orderDetail.Collection','orderDetail.Color',' ',' ',' ',' ']})
+- each table in tables
+	div.table-header(ng-if="#{table.check}!==0")
+		p.title
+			| #{table.title}
+		p.amount
+			| {{#{table.amount}}}
+	table.table(ng-if="#{table.check}!==0")
+		thead
+			tr
+			- each name in table.names
+				th
+					|#{name}
+		tbody
+			tr(ng-repeat="orderDetail in orderDetails | filter:{ProductTypeID:#{table.productid}}")
+				- each property,i in table.properties
+					- if(i!==0)
+						td
+							| {{#{property}}}
+					-else
+						td
+							img(fb-img-src="{{FBConfig.UPaths.DistImagePath+(#{property}|manufacturePhoto:Manufacturers)}}",alt="#{property}",onerror="this.style.display = &quot;none&quot;",style="height:42px;")
+div.totalcost
+			p
+				| TOTAL
+			p
+				|{{calculate.totalCost | currency}}
+								
+textarea.form-control.col-xs-12(style='min-height: 102px;', placeholder='Enter summary details here')

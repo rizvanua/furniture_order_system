@@ -1,0 +1,18 @@
+#quoteModal.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-hidden='true')
+	.modal-dialog.modal-sm
+		.modal-content
+			.modal-header
+				h4.modal-title New Quote
+			.modal-body(style='text-align: center')
+				h4 Enter Quote Information
+				h4 Customer - {{ customer.name }}
+				form(name='newprojectform')
+					.form-group(show-errors='')
+						input.form-control(placeholder='Job Name', maxlength='100', data-ng-model='masterQuote.JobName', name='jobName')
+					.form-group(show-errors='')
+						input.form-control(placeholder='Project Name', maxlength='100', data-ng-model='masterQuote.ProjectName', name='projectName')
+			.modal-footer
+				button.btn.btn-default(type='button', data-dismiss='modal')
+					| Close
+				button.btn.btn-primary.savemasterquote(type='button', data-ng-click='SaveProject(masterQuote)')
+					| Okay
