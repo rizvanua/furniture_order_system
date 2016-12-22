@@ -47,15 +47,11 @@ mainApp.directive('dynamicUiSelect', ['paymentCount', function(paymentCount) {
 					description: search
 				  };
 				/*substitute our data into item list*/
-				var a = arrData.length-1;
-				/*$select.items=list.concat(arrData[a]);*/
+				var a = arrData.length-1;				
 				item=list.concat(userInputItem);
 				$select.items=item.concat(arrData[a]);				
-				$select.selected=$select.search;
-				/*console.log(field);*/
-				/**/
-				/*console.log($select.items);*/
-				
+				$select.selected=$select.search;				
+				/**/				
 				if($select.search){
 					Counter(name, $select.search);
 				}
